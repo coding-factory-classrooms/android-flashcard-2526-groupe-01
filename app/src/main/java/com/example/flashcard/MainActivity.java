@@ -2,6 +2,7 @@ package com.example.flashcard;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
 
+    // All buttons in the main activity/launch page
+    private Button startButton;
+    private Button questionsListButton;
+    private Button statButton;
+    private Button aboutButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Here is where we're linking our variables "Button" to their equivalents in activity_main.xml
+        startButton = findViewById(R.id.startButton);
+        questionsListButton = findViewById(R.id.questionsListButton);
+        statButton = findViewById(R.id.statButton);
+        aboutButton = findViewById(R.id.aboutButton);
+
+        // Here is where we're going to put all extras
+
 
 
     }

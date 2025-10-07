@@ -11,12 +11,36 @@
         android:id="@+id/toolbar2"
         android:layout_width="0dp"
         android:layout_height="75dp"
-        android:background="?attr/colorPrimary"
+        android:background="#9D06FB"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="0dp"
+        android:layout_height="15dp"
+        android:background="#9D06FB"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="0dp"
+        android:layout_height="15dp"
+        android:background="#9D06FB"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/threeRadioButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/questionNumberTextView"
@@ -33,30 +57,19 @@
 
     <ImageView
         android:id="@+id/flagImageView"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="375dp"
+        android:layout_height="375dp"
+        android:layout_marginTop="23dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
 
     <RadioButton
-        android:id="@+id/threeRadioButton"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:text="RadioButton"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/fourRadioButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/oneRadioButton"
-        tools:text="reponse 1" />
-
-    <RadioButton
         android:id="@+id/oneRadioButton"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="4dp"
         android:text="RadioButton"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -66,24 +79,48 @@
         tools:text="reponse 1" />
 
     <RadioButton
-        android:id="@+id/fourRadioButton"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:text="RadioButton"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/threeRadioButton"
-        tools:text="reponse 1" />
-
-    <RadioButton
         android:id="@+id/twoRadioButton"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:text="RadioButton"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar3"
         app:layout_constraintStart_toStartOf="@+id/oneRadioButton"
         tools:text="reponse 1" />
+
+    <RadioButton
+        android:id="@+id/threeRadioButton"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="4dp"
+        android:text="RadioButton"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/fourRadioButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/oneRadioButton"
+        tools:text="reponse 1" />
+
+    <RadioButton
+        android:id="@+id/fourRadioButton"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="RadioButton"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar3"
+        app:layout_constraintEnd_toEndOf="@+id/threeRadioButton"
+        tools:text="reponse 1" />
+
+    <ImageView
+        android:id="@+id/difficultyImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintStart_toStartOf="@+id/toolbar2"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        tools:srcCompat="@drawable/d_easy" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
