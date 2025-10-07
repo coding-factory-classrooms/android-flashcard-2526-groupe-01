@@ -24,6 +24,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Log.d(TAG, "Hello Flashcard");
+
     }
 }
