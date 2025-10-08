@@ -16,6 +16,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "MainActivity";
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Intent intent = new Intent(this, QuestionsActivity.class);
                         intent.putExtra("selecteddif", selectedDif);
                         intent.putExtra("d_logo", setDifficultyLogo(selectedDif));
+                        questionsInitialization(selectedDif, intent);
                         startActivity(intent);
                         dialog.dismiss();
                     });
@@ -132,5 +138,142 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             d_logo = R.drawable.d_hardcore;
         }
         return d_logo;
+    }
+
+    public void questionsInitialization(int selectedDif, Intent intent) {
+        int questionIndex = 0;
+        ArrayList<Questions> questions = new ArrayList<>();
+        if (selectedDif == 0) {
+
+            // Questions for the easy difficulty
+            List<String> answers1 = new ArrayList<>();
+            answers1.add("France");
+            answers1.add("Inde");
+            answers1.add("Pays-Bas");
+            answers1.add("Chine");
+            List<String> answers2 = new ArrayList<>();
+            answers2.add("ffqfq");
+            answers2.add("zfq");
+            answers2.add("fzqs");
+            answers2.add("fzqsf");
+            List<String> answers3 = new ArrayList<>();
+            answers3.add("fzqzf");
+            answers3.add("fzqsf");
+            answers3.add("fzqs");
+            answers3.add("fzqsfz");
+            List<String> answers4 = new ArrayList<>();
+            answers4.add("fzqsf");
+            answers4.add("chips");
+            answers4.add("fzqsf");
+            answers4.add("fzqsf");
+            Questions EQ1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 3, 0, false);
+            Questions EQ2 = new Questions("zfqqzf", answers2, 1, 0, false);
+            Questions EQ3 = new Questions("qzfqzf", answers3, 1, 0, false);
+            Questions EQ4 = new Questions("zqfqzf", answers4, 1, 0, false);
+            questions.add(EQ1);
+            questions.add(EQ2);
+            questions.add(EQ3);
+            questions.add(EQ4);
+
+        } else if (selectedDif == 1) {
+
+            // Questions for the medium difficulty
+            List<String> answers1 = new ArrayList<>();
+            answers1.add("test");
+            answers1.add("test");
+            answers1.add("test");
+            answers1.add("test");
+            List<String> answers2 = new ArrayList<>();
+            answers2.add("ffqfq");
+            answers2.add("zfq");
+            answers2.add("fzqs");
+            answers2.add("fzqsf");
+            List<String> answers3 = new ArrayList<>();
+            answers3.add("fzqzf");
+            answers3.add("fzqsf");
+            answers3.add("fzqs");
+            answers3.add("fzqsfz");
+            List<String> answers4 = new ArrayList<>();
+            answers4.add("fzqsf");
+            answers4.add("fzqsfzq");
+            answers4.add("fzqsf");
+            answers4.add("fzqsf");
+            Questions MQ1 = new Questions("qzfqzfqzf", answers1, 1, 0, false);
+            Questions MQ2 = new Questions("qzfqzf", answers2, 1, 0, false);
+            Questions MQ3 = new Questions("zfqzfq", answers3, 1, 0, false);
+            Questions MQ4 = new Questions("zfqzf", answers4, 1, 0, false);
+            questions.add(MQ1);
+            questions.add(MQ2);
+            questions.add(MQ3);
+            questions.add(MQ4);
+
+        } else if (selectedDif == 2) {
+
+            // Questions for the hard difficulty
+            List<String> answers1 = new ArrayList<>();
+            answers1.add("test");
+            answers1.add("test");
+            answers1.add("test");
+            answers1.add("test");
+            List<String> answers2 = new ArrayList<>();
+            answers2.add("ffqfq");
+            answers2.add("zfq");
+            answers2.add("fzqs");
+            answers2.add("fzqsf");
+            List<String> answers3 = new ArrayList<>();
+            answers3.add("fzqzf");
+            answers3.add("fzqsf");
+            answers3.add("fzqs");
+            answers3.add("fzqsfz");
+            List<String> answers4 = new ArrayList<>();
+            answers4.add("fzqsf");
+            answers4.add("fzqsfzq");
+            answers4.add("fzqsf");
+            answers4.add("fzqsf");
+            Questions HQ1 = new Questions("ezeggez", answers1, 2, 0, false);
+            Questions HQ2 = new Questions("aegfegazeg", answers2, 1, 0, false);
+            Questions HQ3 = new Questions("aezgfaeg", answers3, 1, 0, false);
+            Questions HQ4 = new Questions("aezgaeg", answers4, 1, 0, false);
+            questions.add(HQ1);
+            questions.add(HQ2);
+            questions.add(HQ3);
+            questions.add(HQ4);
+
+        } else if (selectedDif == 3) {
+
+            // Questions for the hardcore difficulty
+            List<String> answers1 = new ArrayList<>();
+            answers1.add("test");
+            answers1.add("test");
+            answers1.add("test");
+            answers1.add("test");
+            List<String> answers2 = new ArrayList<>();
+            answers2.add("ffqfq");
+            answers2.add("zfq");
+            answers2.add("fzqs");
+            answers2.add("fzqsf");
+            List<String> answers3 = new ArrayList<>();
+            answers3.add("fzqzf");
+            answers3.add("fzqsf");
+            answers3.add("fzqs");
+            answers3.add("fzqsfz");
+            List<String> answers4 = new ArrayList<>();
+            answers4.add("fzqsf");
+            answers4.add("fzqsfzq");
+            answers4.add("fzqsf");
+            answers4.add("fzqsf");
+            Questions HCQ1 = new Questions("", answers1, 1, 0, false);
+            Questions HCQ2 = new Questions("", answers2, 1, 0, false);
+            Questions HCQ3 = new Questions("", answers3, 1, 0, false);
+            Questions HCQ4 = new Questions("", answers4, 1, 0, false);
+            questions.add(HCQ1);
+            questions.add(HCQ2);
+            questions.add(HCQ3);
+            questions.add(HCQ4);
+
+        }
+        Collections.shuffle(questions); // Randomize the order of questions
+        intent.putParcelableArrayListExtra("questions", questions);
+        intent.putExtra("questionindex", questionIndex);
     }
 }

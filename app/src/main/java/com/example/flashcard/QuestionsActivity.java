@@ -2,6 +2,7 @@ package com.example.flashcard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,7 +27,8 @@ public class QuestionsActivity extends AppCompatActivity {
 
     // Variable  du nombre de click pour le button Valider
     int numberClickButton = 0;
-    private Questions Q1;
+
+    ArrayList<Questions> questionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,40 +41,47 @@ public class QuestionsActivity extends AppCompatActivity {
             return insets;
         });
 
-         Intent srcIntent = getIntent();
-         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
-         difficultyQuestions(selectedDif);
-         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
+        Intent srcIntent = getIntent();
+        int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
+        int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
+        int questionIndex = srcIntent.getIntExtra("questionindex", 0);
+        questionList = srcIntent.getParcelableArrayListExtra("questions");
 
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
         ImageView difficultyImageView = findViewById(R.id.difficultyImageView);
         difficultyImageView.setImageResource(d_logo);
 
-        List<String> answers = new ArrayList<>();
-        answers.add(Q1.answerI);
-        answers.add(Q1.answerII);
-        answers.add(Q1.answerIII);
-        answers.add(Q1.answerIV);
+        Questions Q = questionList.get(questionIndex);
 
-        String correctAnswer = answers.get(Q1.correctAnswerPosition - 1);
+        String correctAnswer = Q.answers.get(Q.correctAnswerPosition - 1);
 
-        Collections.shuffle(answers);
+        Collections.shuffle(Q.answers);
 
-        Q1.answerI = answers.get(0);
-        Q1.answerII = answers.get(1);
-        Q1.answerIII = answers.get(2);
-        Q1.answerIV = answers.get(3);
+        // À mettre dans la boucle for en dessous (je crois :D)
+        String answerI = Q.answers.get(0);
+        String answerII = Q.answers.get(1);
+        String answerIII = Q.answers.get(2);
+        String answerIV = Q.answers.get(3);
 
-        Q1.correctAnswerPosition = answers.indexOf(correctAnswer) + 1;
+        Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
 
+//        for (int i = 0; i < Q.answers.size(); i++) {
+//            // Instancier un RadioButton
+//
+//            int id = View.generateViewId();
+//
+//            // ajouter ce rb a ton radiogroup
+//        }
+
+        // À mettre dans la boucle for aussi (je crois :D)
         Button oneRadioButton = findViewById(R.id.oneRadioButton);
-        oneRadioButton.setText(Q1.getAnswerI());
+        oneRadioButton.setText(answerI);
         Button twoRadioButton = findViewById(R.id.twoRadioButton);
-        twoRadioButton.setText(Q1.getAnswerII());
+        twoRadioButton.setText(answerII);
         Button threeRadioButton = findViewById(R.id.threeRadioButton);
-        threeRadioButton.setText(Q1.getAnswerIII());
+        threeRadioButton.setText(answerIII);
         Button fourRadioButton = findViewById(R.id.fourRadioButton);
-        fourRadioButton.setText(Q1.getAnswerIV());
+        fourRadioButton.setText(answerIV);
 
         // On assigne un tag à chaque bouton
         oneRadioButton.setTag(1);
@@ -81,8 +90,9 @@ public class QuestionsActivity extends AppCompatActivity {
         fourRadioButton.setTag(4);
 
 
+
         // Recupere la bonne reponse
-        int response = Q1.correctAnswerPosition;
+        int response = Q.correctAnswerPosition;
 
 
         Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
@@ -98,7 +108,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
-            if (response == responseUser ){
+            if (response == responseUser){
                 Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
 
             }
@@ -107,22 +117,17 @@ public class QuestionsActivity extends AppCompatActivity {
                 Toast.makeText(this, "Oh non c'est pas bon, la bonne reponse etait : " + response, Toast.LENGTH_SHORT).show();
             }
             // Changement du text du button valider en "prochaine question"
+            Q.answered = true;
             submitChoiceButtton.setText("Prochaine question !");
 
 
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1){
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, QuestionsActivity.class);
+                intent.putParcelableArrayListExtra("questionlist", questionList);
+                intent.putExtra("questionindex", questionIndex + 1);
                 startActivity(intent);
             }
         });
-    }
-
-    private void difficultyQuestions(int selectedDif) {
-        Q1 = new Questions(
-                "Quel Flag ?",
-                "Fr", "Inde", "Chine", "Pays-bas",
-                4,
-                R.drawable.apptitle, false);
     }
 }

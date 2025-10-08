@@ -4,99 +4,28 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
 
+import java.util.List;
+
 public class Questions implements Parcelable {
 
     public String question;
-    public String answerI;
-    public String answerII;
-    public String answerIII;
-    public String answerIV;
+    public List<String> answers;
     public int correctAnswerPosition;
     public int flag;
+
     public boolean answered;
 
-    public Questions(String question, String answerI, String answerII, String answerIII, String answerIV, int correctAnswerPosition, int flag, boolean answered) {
+    public Questions(String question, List<String> answers, int correctAnswerPosition, int flag, boolean answered) {
         this.question = question;
-        this.answerI = answerI;
-        this.answerII = answerII;
-        this.answerIII = answerIII;
-        this.answerIV = answerIV;
+        this.answers = answers;
         this.correctAnswerPosition = correctAnswerPosition;
         this.flag = flag;
         this.answered = answered;
-    }
-
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public boolean isAnswered() {
-        return answered;
-    }
-
-    public void setAnswered(boolean answered) {
-        this.answered = answered;
-    }
-
-    public int getCorrectAnswerPosition() {
-        return correctAnswerPosition;
-    }
-
-    public void setCorrectAnswerPosition(int correctAnswerPosition) {
-        this.correctAnswerPosition = correctAnswerPosition;
-    }
-
-    public int getFlag() {
-        return flag;
-    }
-
-    public void setFlag(int flag) {
-        this.flag = flag;
-    }
-
-    public String getAnswerIV() {
-        return answerIV;
-    }
-
-    public void setAnswerIV(String answerIV) {
-        this.answerIV = answerIV;
-    }
-
-    public String getAnswerIII() {
-        return answerIII;
-    }
-
-    public void setAnswerIII(String answerIII) {
-        this.answerIII = answerIII;
-    }
-
-    public String getAnswerII() {
-        return answerII;
-    }
-
-    public void setAnswerII(String answerII) {
-        this.answerII = answerII;
-    }
-
-    public String getAnswerI() {
-        return answerI;
-    }
-
-    public void setAnswerI(String answerI) {
-        this.answerI = answerI;
     }
 
     protected Questions(Parcel in) {
         question = in.readString();
-        answerI = in.readString();
-        answerII = in.readString();
-        answerIII = in.readString();
-        answerIV = in.readString();
+        answers = in.createStringArrayList();
         correctAnswerPosition = in.readInt();
         flag = in.readInt();
         answered = in.readByte() != 0;
@@ -105,10 +34,7 @@ public class Questions implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(question);
-        dest.writeString(answerI);
-        dest.writeString(answerII);
-        dest.writeString(answerIII);
-        dest.writeString(answerIV);
+        dest.writeStringList(answers);
         dest.writeInt(correctAnswerPosition);
         dest.writeInt(flag);
         dest.writeByte((byte) (answered ? 1 : 0));
@@ -130,4 +56,44 @@ public class Questions implements Parcelable {
             return new Questions[size];
         }
     };
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public List<String> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<String> answers) {
+        this.answers = answers;
+    }
+
+    public int getCorrectAnswerPosition() {
+        return correctAnswerPosition;
+    }
+
+    public void setCorrectAnswerPosition(int correctAnswerPosition) {
+        this.correctAnswerPosition = correctAnswerPosition;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
+    }
 }
