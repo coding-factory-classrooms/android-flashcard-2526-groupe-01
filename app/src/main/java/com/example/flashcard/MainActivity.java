@@ -1,6 +1,8 @@
 package com.example.flashcard;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -58,16 +61,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.startButton) {
-            // choose a difficulty
+
+            // Here is the logic for the choice of the difficulty
+            String[] difficulties = {"Facile", "Moyen", "Difficile"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Choisis une difficulté");
+            builder.setSingleChoiceItems(difficulties, 0, (dialog, which) -> {
+
+                });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
         } else if (id == R.id.questionsListButton) {
-            // go to questionsListActivity
+
+            // go to questionsListActivity - Here is the logic for the transition to the questions list page
             Intent intent = new Intent(this, QuestionsListActivity.class);
             startActivity(intent);
+
         } else if (id == R.id.statButton) {
-            // go to statActivity
+
+            // go to statActivity - Here is the logic for the transition to the stat page
             Intent intent = new Intent(this, StatActivity.class);
             startActivity(intent);
+
         } else if (id == R.id.aboutButton) {
+
             // go to aboutActivity
             Intent intent = new Intent(this, AboutActivity.class);
             intent.putExtra("apptitle", appTitle);
@@ -77,8 +97,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("creatorIII", "Strauss A");
             intent.putExtra("creatorIV", "Romain P");
             intent.putExtra("group", "01");
-            intent.putExtra("version", "prototype 1");
+            intent.putExtra("version", getAppVersion());
             startActivity(intent);
         }
+    }
+
+    private String getAppVersion(){
+        String version = "";
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("ERROR", "error while getting the app version");
+            version = "Error";
+        }
+        return version;
     }
 }
