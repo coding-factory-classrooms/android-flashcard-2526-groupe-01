@@ -17,6 +17,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class QuestionsActivity extends AppCompatActivity {
@@ -45,7 +48,22 @@ public class QuestionsActivity extends AppCompatActivity {
         ImageView difficultyImageView = findViewById(R.id.difficultyImageView);
         difficultyImageView.setImageResource(d_logo);
 
+        List<String> answers = new ArrayList<>();
+        answers.add(Q1.answerI);
+        answers.add(Q1.answerII);
+        answers.add(Q1.answerIII);
+        answers.add(Q1.answerIV);
 
+        String correctAnswer = answers.get(Q1.correctAnswerPosition - 1);
+
+        Collections.shuffle(answers);
+
+        Q1.answerI = answers.get(0);
+        Q1.answerII = answers.get(1);
+        Q1.answerIII = answers.get(2);
+        Q1.answerIV = answers.get(3);
+
+        Q1.correctAnswerPosition = answers.indexOf(correctAnswer) + 1;
 
         Button oneRadioButton = findViewById(R.id.oneRadioButton);
         oneRadioButton.setText(Q1.getAnswerI());
@@ -97,12 +115,6 @@ public class QuestionsActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
-
-
-
-
-
-
         });
     }
 
