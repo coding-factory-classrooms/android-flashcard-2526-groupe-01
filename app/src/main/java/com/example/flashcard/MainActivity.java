@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -63,13 +62,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (id == R.id.startButton) {
 
             // Here is the logic for the choice of the difficulty by a dialog box
-            String[] difficulties = {"Facile", "Moyen", "Difficile"};
+            String[] difficulties = {"Facile", "Moyen", "Difficile", "Hardcore"};
 
             AlertDialog.Builder difficultyChoiceDialog = new AlertDialog.Builder(this);
             difficultyChoiceDialog
                     .setTitle("Choisis une difficulté")
                     .setSingleChoiceItems(difficulties, 0, (dialog, which) -> {
-                        int selectedDif = which; // 0 = Easy, 1 = Medium, 2 = Hard
+                        int selectedDif = which; // 0 = Easy, 1 = Medium, 2 = Hard, 3 = hardcore
                         Intent intent = new Intent(this, QuestionsActivity.class);
                         intent.putExtra("selecteddif", selectedDif);
                         intent.putExtra("d_logo", setDifficultyLogo(selectedDif));
@@ -128,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (selectedDif == 1) {
             d_logo = R.drawable.d_medium;
         } else if (selectedDif == 2) {
+            d_logo = R.drawable.d_hard;
+        } else if (selectedDif == 3) {
             d_logo = R.drawable.d_hardcore;
         }
         return d_logo;
