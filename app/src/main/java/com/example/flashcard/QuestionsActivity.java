@@ -1,6 +1,10 @@
 package com.example.flashcard;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +24,14 @@ public class QuestionsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+         Intent srcIntent = getIntent();
+         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
+         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
+
+        TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
+        ImageView difficultyImageView = findViewById(R.id.difficultyImageView);
+        questionNumberTextView.setText(selectedDif + "");
+        difficultyImageView.setImageResource(d_logo);
     }
 }

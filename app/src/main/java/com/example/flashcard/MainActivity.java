@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         int selectedDif = which; // 0 = Easy, 1 = Medium, 2 = Hard
                         Intent intent = new Intent(this, QuestionsActivity.class);
                         intent.putExtra("selecteddif", selectedDif);
+                        intent.putExtra("d_logo", setDifficultyLogo(selectedDif));
                         startActivity(intent);
                         dialog.dismiss();
                     });
@@ -118,5 +119,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             version = "Error";
         }
         return version;
+    }
+
+    private int setDifficultyLogo(int selectedDif) {
+        int d_logo = 0;
+        if (selectedDif == 0) {
+            d_logo = R.drawable.d_easy;
+        } else if (selectedDif == 1) {
+            d_logo = R.drawable.d_medium;
+        } else if (selectedDif == 2) {
+            d_logo = R.drawable.d_hardcore;
+        }
+        return d_logo;
     }
 }
