@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.startButton) {
-            // choose a difficulty
+            Intent intent = new Intent(this, QuestionsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.questionsListButton) {
             // go to questionsListActivity
             Intent intent = new Intent(this, QuestionsListActivity.class);
