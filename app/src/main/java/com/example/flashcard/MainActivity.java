@@ -62,17 +62,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = view.getId();
         if (id == R.id.startButton) {
 
-            // Here is the logic for the choice of the difficulty
+            // Here is the logic for the choice of the difficulty by a dialog box
             String[] difficulties = {"Facile", "Moyen", "Difficile"};
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Choisis une difficulté");
-            builder.setSingleChoiceItems(difficulties, 0, (dialog, which) -> {
-
-                });
-
-            AlertDialog dialog = builder.create();
+            AlertDialog.Builder difficultyChoiceDialog = new AlertDialog.Builder(this);
+            difficultyChoiceDialog
+                    .setTitle("Choisis une difficulté")
+                    .setSingleChoiceItems(difficulties, 0, (dialog, which) -> {
+                        int selectedDif = which; // 0 = Easy, 1 = Medium, 2 = Hard
+                        Intent intent = new Intent(this, QuestionsActivity.class);
+                        intent.putExtra("selecteddif", selectedDif);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    });
+            AlertDialog dialog = difficultyChoiceDialog.create();
             dialog.show();
+
 
         } else if (id == R.id.questionsListButton) {
 
@@ -90,14 +95,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // go to aboutActivity
             Intent intent = new Intent(this, AboutActivity.class);
-            intent.putExtra("apptitle", appTitle);
-            intent.putExtra("apptitletext", "Guess the flag");
-            intent.putExtra("creatorI", "Draxan LT");
-            intent.putExtra("creatorII", "Matias D");
-            intent.putExtra("creatorIII", "Strauss A");
-            intent.putExtra("creatorIV", "Romain P");
-            intent.putExtra("group", "01");
-            intent.putExtra("version", getAppVersion());
+            intent
+                    .putExtra("apptitle", appTitle)
+                    .putExtra("apptitletext", "Guess the flag")
+                    .putExtra("creatorI", "Draxan LT")
+                    .putExtra("creatorII", "Matias D")
+                    .putExtra("creatorIII", "Strauss A")
+                    .putExtra("creatorIV", "Romain P")
+                    .putExtra("group", "01")
+                    .putExtra("version", getAppVersion());
             startActivity(intent);
         }
     }
