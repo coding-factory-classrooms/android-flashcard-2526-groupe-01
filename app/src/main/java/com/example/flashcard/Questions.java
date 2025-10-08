@@ -26,6 +26,71 @@ public class Questions implements Parcelable {
         this.answered = answered;
     }
 
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
+    }
+
+    public int getCorrectAnswerPosition() {
+        return correctAnswerPosition;
+    }
+
+    public void setCorrectAnswerPosition(int correctAnswerPosition) {
+        this.correctAnswerPosition = correctAnswerPosition;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public String getAnswerIV() {
+        return answerIV;
+    }
+
+    public void setAnswerIV(String answerIV) {
+        this.answerIV = answerIV;
+    }
+
+    public String getAnswerIII() {
+        return answerIII;
+    }
+
+    public void setAnswerIII(String answerIII) {
+        this.answerIII = answerIII;
+    }
+
+    public String getAnswerII() {
+        return answerII;
+    }
+
+    public void setAnswerII(String answerII) {
+        this.answerII = answerII;
+    }
+
+    public String getAnswerI() {
+        return answerI;
+    }
+
+    public void setAnswerI(String answerI) {
+        this.answerI = answerI;
+    }
+
     protected Questions(Parcel in) {
         question = in.readString();
         answerI = in.readString();

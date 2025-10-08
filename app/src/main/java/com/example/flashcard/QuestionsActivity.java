@@ -23,6 +23,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
     // Variable  du nombre de click pour le button Valider
     int numberClickButton = 0;
+    private Questions Q1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
          Intent srcIntent = getIntent();
          int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
+         difficultyQuestions(selectedDif);
          int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
 
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
@@ -45,25 +47,14 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         Button oneRadioButton = findViewById(R.id.oneRadioButton);
-        oneRadioButton.setText("France");
+        oneRadioButton.setText(Q1.getAnswerI());
         Button twoRadioButton = findViewById(R.id.twoRadioButton);
-        twoRadioButton.setText("Inde");
+        twoRadioButton.setText(Q1.getAnswerII());
         Button threeRadioButton = findViewById(R.id.threeRadioButton);
-        threeRadioButton.setText("Chine");
+        threeRadioButton.setText(Q1.getAnswerIII());
         Button fourRadioButton = findViewById(R.id.fourRadioButton);
-        fourRadioButton.setText("Pays-bas");
+        fourRadioButton.setText(Q1.getAnswerIV());
 
         // On assigne un tag à chaque bouton
         oneRadioButton.setTag(1);
@@ -73,7 +64,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         // Recupere la bonne reponse
-        int response = 2;
+        int response = Q1.correctAnswerPosition;
 
 
         Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
@@ -116,10 +107,10 @@ public class QuestionsActivity extends AppCompatActivity {
     }
 
     private void difficultyQuestions(int selectedDif) {
-        Questions Q1 = new Questions(
-                "",
-                "", "", "", "",
-                2,
+        Q1 = new Questions(
+                "Quel Flag ?",
+                "Fr", "Inde", "Chine", "Pays-bas",
+                4,
                 R.drawable.apptitle, false);
     }
 }
