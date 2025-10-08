@@ -1,19 +1,25 @@
 package com.example.flashcard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class QuestionsActivity extends AppCompatActivity {
+
+    // Variable  du nombre de click pour le button Valider
+    int numberClickButton = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +33,13 @@ public class QuestionsActivity extends AppCompatActivity {
         });
 
         Button oneRadioButton = findViewById(R.id.oneRadioButton);
+        oneRadioButton.setText("France");
         Button twoRadioButton = findViewById(R.id.twoRadioButton);
+        twoRadioButton.setText("Inde");
         Button threeRadioButton = findViewById(R.id.threeRadioButton);
+        threeRadioButton.setText("Chine");
         Button fourRadioButton = findViewById(R.id.fourRadioButton);
+        fourRadioButton.setText("Pays-bas");
 
         // On assigne un tag à chaque bouton
         oneRadioButton.setTag(1);
@@ -41,8 +51,12 @@ public class QuestionsActivity extends AppCompatActivity {
         // Recupere la bonne reponse
         int response = 2;
 
+
         Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
         submitChoiceButtton.setOnClickListener(view -> {
+
+           numberClickButton++;
+
             // Recuperer le choix de l'utilisateur
             RadioGroup radioGroup = findViewById(R.id.radio_group);
             int checkedId = radioGroup.getCheckedRadioButtonId();
@@ -52,12 +66,28 @@ public class QuestionsActivity extends AppCompatActivity {
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
             if (response == responseUser ){
-                Log.d("response", "Bien Jouer c'est la bonne reponse");
+                Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
+
             }
             // sinon mauvaise reponse / afficher faux et passer a la suite
             else {
-                Log.d("nonono", "oh non c'est pas ca hahaahha ");
+                Toast.makeText(this, "Oh non c'est pas bon, la bonne reponse etait : " + response, Toast.LENGTH_SHORT).show();
             }
+            // Changement du text du button valider en "prochaine question"
+            submitChoiceButtton.setText("Prochaine question !");
+
+
+            // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
+            if (numberClickButton > 1){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
+
+
+
+
+
+
         });
     }
 }
