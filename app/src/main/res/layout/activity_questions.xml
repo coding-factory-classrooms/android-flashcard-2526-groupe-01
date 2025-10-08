@@ -84,58 +84,7 @@
         android:layout_height="201dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flagImageView">
-
-
-        <RadioButton
-            android:id="@+id/oneRadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="RadioButton"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/twoRadioButton"
-            app:layout_constraintEnd_toStartOf="@+id/threeRadioButton"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="reponse 1" />
-
-        <RadioButton
-            android:id="@+id/twoRadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RadioButton"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/toolbar3"
-            app:layout_constraintStart_toStartOf="@+id/oneRadioButton"
-            tools:text="reponse 1" />
-
-        <RadioButton
-            android:id="@+id/threeRadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="RadioButton"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/fourRadioButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/oneRadioButton"
-            tools:text="reponse 1" />
-
-        <RadioButton
-            android:id="@+id/fourRadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RadioButton"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toTopOf="@+id/toolbar3"
-            app:layout_constraintEnd_toEndOf="@+id/threeRadioButton"
-            tools:text="reponse 1" />
-
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/flagImageView"/>
 
     <Button
         android:id="@+id/submitChoiceButtton"

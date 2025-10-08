@@ -65,6 +65,17 @@ public class QuestionsActivity extends AppCompatActivity {
 
         Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
 
+
+        RadioGroup group = findViewById(R.id.radio_group);
+
+    // création d'un button pour chaque reponse
+        for (int i = 0; i < Q.answers.size(); i++) {
+            RadioButton radioButton = new RadioButton(this);
+            radioButton.setText(Q.answers.get(i));
+            radioButton.setTag(i + 1);
+            radioButton.setPadding(8, 8, 8, 8);
+            group.addView(radioButton);
+        }
 //        for (int i = 0; i < Q.answers.size(); i++) {
 //            // Instancier un RadioButton
 //
@@ -74,20 +85,20 @@ public class QuestionsActivity extends AppCompatActivity {
 //        }
 
         // À mettre dans la boucle for aussi (je crois :D)
-        Button oneRadioButton = findViewById(R.id.oneRadioButton);
-        oneRadioButton.setText(answerI);
-        Button twoRadioButton = findViewById(R.id.twoRadioButton);
-        twoRadioButton.setText(answerII);
-        Button threeRadioButton = findViewById(R.id.threeRadioButton);
-        threeRadioButton.setText(answerIII);
-        Button fourRadioButton = findViewById(R.id.fourRadioButton);
-        fourRadioButton.setText(answerIV);
-
-        // On assigne un tag à chaque bouton
-        oneRadioButton.setTag(1);
-        twoRadioButton.setTag(2);
-        threeRadioButton.setTag(3);
-        fourRadioButton.setTag(4);
+//        Button oneRadioButton = findViewById(R.id.oneRadioButton);
+//        oneRadioButton.setText(answerI);
+//        Button twoRadioButton = findViewById(R.id.twoRadioButton);
+//        twoRadioButton.setText(answerII);
+//        Button threeRadioButton = findViewById(R.id.threeRadioButton);
+//        threeRadioButton.setText(answerIII);
+//        Button fourRadioButton = findViewById(R.id.fourRadioButton);
+//        fourRadioButton.setText(answerIV);
+//
+//        // On assigne un tag à chaque bouton
+//        oneRadioButton.setTag(1);
+//        twoRadioButton.setTag(2);
+//        threeRadioButton.setTag(3);
+//        fourRadioButton.setTag(4);
 
 
 
@@ -122,11 +133,21 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
-            if (numberClickButton > 1){
-                Intent intent = new Intent(this, QuestionsActivity.class);
-                intent.putParcelableArrayListExtra("questionlist", questionList);
-                intent.putExtra("questionindex", questionIndex + 1);
-                startActivity(intent);
+            if (numberClickButton > 1) {
+                if (questionIndex + 1 < questionList.size()) {
+                    // Encore des questions -> aller à la suivante
+                    Intent intent = new Intent(this, QuestionsActivity.class);
+                    intent.putParcelableArrayListExtra("questions", questionList);
+                    intent.putExtra("questionindex", questionIndex + 1);
+                    startActivity(intent);
+                } else {
+                    // Plus de questions -> fin du quiz
+                    Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
+
+                    // rediriger vers les stat de la partie ici
+                     startActivity(new Intent(this, MainActivity.class));
+                     finish();
+                }
             }
         });
     }
