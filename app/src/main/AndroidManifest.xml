@@ -15,7 +15,7 @@
             android:name=".QuestionsListActivity"
             android:exported="false" />
         <activity
-            android:name=".StatActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".QuestionsActivity"
@@ -24,7 +24,7 @@
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".StatsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

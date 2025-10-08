@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatActivity">
+    tools:context=".StatsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar6"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/difficultLevelTextView" />
 
     <TextView
-        android:id="@+id/PercentageProgressBar"
+        android:id="@+id/percentageProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="50 %"
@@ -122,6 +122,6 @@
         android:text="Share my Score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PercentageProgressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/percentageProgressBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

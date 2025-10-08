@@ -2,11 +2,9 @@ package com.example.flashcard;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         } else if (id == R.id.statButton) {
             // go to statActivity
-            Intent intent = new Intent(this, StatActivity.class);
+            Intent intent = new Intent(this, StatsActivity.class);
             startActivity(intent);
         } else if (id == R.id.aboutButton) {
             // go to aboutActivity
