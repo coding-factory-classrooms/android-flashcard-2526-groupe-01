@@ -43,6 +43,19 @@ public class QuestionsActivity extends AppCompatActivity {
         ImageView difficultyImageView = findViewById(R.id.difficultyImageView);
         difficultyImageView.setImageResource(d_logo);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         Button oneRadioButton = findViewById(R.id.oneRadioButton);
         oneRadioButton.setText("France");
         Button twoRadioButton = findViewById(R.id.twoRadioButton);
@@ -100,5 +113,13 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         });
+    }
+
+    private void difficultyQuestions(int selectedDif) {
+        Questions Q1 = new Questions(
+                "",
+                "", "", "", "",
+                2,
+                R.drawable.apptitle, false);
     }
 }
