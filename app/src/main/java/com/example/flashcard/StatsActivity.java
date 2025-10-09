@@ -4,18 +4,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
 
 public class StatsActivity extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class StatsActivity extends AppCompatActivity {
         TextView percentage = findViewById(R.id.percentageProgressBar);
         TextView difficulty = findViewById(R.id.difficultyLevelTextView);
 
+        Button trainingButton = findViewById(R.id.trainingButton);
         Button shareButton = findViewById(R.id.shareButton);
         Button homeButton = findViewById(R.id.homeButton);
 
@@ -44,6 +48,7 @@ public class StatsActivity extends AppCompatActivity {
 
         int scoreText = getIntent().getIntExtra("scoretext", 0);
         int diff = getIntent().getIntExtra("diffScore", 0);
+        ArrayList<Questions> wrongAnswersList = getIntent().getParcelableArrayListExtra("wrongAnswersList");
 
         // Calculate and set % progress bar
         float perProgress = (float) scoreText /4 * 100f;
@@ -69,6 +74,24 @@ public class StatsActivity extends AppCompatActivity {
         }
 
         score.setText(scoreText + " / 4");
+
+        // If user got wrong answers button redirect to a short quizz
+        if (wrongAnswersList != null && !wrongAnswersList.isEmpty()) {
+            trainingButton.setVisibility(View.VISIBLE);
+
+            trainingButton.setOnClickListener(view -> {
+                Intent intentTraining = new Intent(this, QuestionsTrainingActivity.class);
+                intentTraining.putParcelableArrayListExtra("wrongAnswersList", wrongAnswersList);
+                intentTraining.putExtra("questionindex", 0);
+                intentTraining.putExtra("scoretext", 0);
+                startActivity(intentTraining);
+                finish();
+            });
+
+        }
+        else {
+            trainingButton.setVisibility(View.INVISIBLE);
+        }
 
         // Instance created when share button clicked
         shareButton.setOnClickListener(view -> {

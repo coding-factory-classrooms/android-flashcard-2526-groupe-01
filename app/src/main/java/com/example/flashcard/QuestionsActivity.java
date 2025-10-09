@@ -36,7 +36,9 @@ public class QuestionsActivity extends AppCompatActivity {
     private MediaPlayer EspagnePlayer;
     private MediaPlayer Inde;
     ArrayList<Questions> questionList;
+    ArrayList<Questions> wrongAnswersList = new ArrayList<>();
 
+    int currentQuestionIndex = 0;
     int scoreText;
 
     @Override
@@ -68,6 +70,10 @@ public class QuestionsActivity extends AppCompatActivity {
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
         scoreText = getIntent().getIntExtra("scoretext", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
+        wrongAnswersList = getIntent().getParcelableArrayListExtra("wrongAnswersList");
+        if (wrongAnswersList == null) {
+            wrongAnswersList = new ArrayList<>();
+        }
         Questions Q = questionList.get(questionIndex);
 
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
@@ -173,6 +179,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
                 // sinon mauvaise reponse / afficher faux et passer a la suite
                 else {
+                    wrongAnswersList.add(Q);
                     feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
                     if (numberClickButton <= 1) {
                         WrongMediaPlayer.start();
@@ -183,7 +190,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 submitChoiceButtton.setText("Prochaine question !");
             }
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
-
+            if (numberClickButton > 1) {
                 if (questionIndex + 1 < questionList.size()) {
                     // Encore des questions -> aller à la suivante
                     Intent intent = new Intent(this, QuestionsActivity.class);
@@ -198,11 +205,14 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     // rediriger vers les stats de la partie ici
                     Intent intentStats = new Intent(this, StatsActivity.class);
+                    intentStats.putParcelableArrayListExtra("wrongAnswersList", wrongAnswersList);
+                    wrongAnswersList.size();
+                    intentStats.putExtra("questionindex", questionIndex);
                     intentStats.putExtra("scoretext", scoreText);
                     startActivity(intentStats);
                     finish();
                 }
-
+            }
         });
 
 

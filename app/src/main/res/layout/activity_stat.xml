@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".StatsActivity">
 
+    <Button
+        android:id="@+id/trainingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#9D06FB"
+        android:text="Reviser les questions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/percentageProgressBar" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar6"
         android:layout_width="0dp"
@@ -117,11 +128,11 @@
         android:id="@+id/shareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:backgroundTint="#9D06FB"
         android:text="Partager mon Score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/percentageProgressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/trainingButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
