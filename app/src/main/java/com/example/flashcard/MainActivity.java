@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             answers4.add("Italie");
             answers4.add("Ukraine");
             answers4.add("Russie");
-            Questions EQ1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_e_brazil, false);
+            Questions EQ1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_e_brazil, R.raw.flag_e_brazil, "easy");
             Questions EQ2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 3, R.drawable.flag_e_nigeria, false);
             Questions EQ3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 1, R.drawable.flag_e_spain, false);
             Questions EQ4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 2, R.drawable.flag_e_italy, false);
@@ -246,10 +246,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             answers4.add("Ouzbékistan");
             answers4.add("Suriname");
             answers4.add("Libye");
-            Questions HQ1 = new Questions("ezeggez", answers1, 3, R.drawable.flag_h_eritrea, false);
-            Questions HQ2 = new Questions("aegfegazeg", answers2, 1, R.drawable.flag_h_malawi, false);
-            Questions HQ3 = new Questions("aezgfaeg", answers3, 1, R.drawable.flag_h_oman, false);
-            Questions HQ4 = new Questions("aezgaeg", answers4, 1, R.drawable.flag_h_mozambique, false);
+            Questions HQ1 = new Questions("ezeggez", answers1, 3, R.drawable.flag_h_eritrea, );
+            Questions HQ2 = new Questions("aegfegazeg", answers2, 1, R.drawable.flag_h_malawi, );
+            Questions HQ3 = new Questions("aezgfaeg", answers3, 1, R.drawable.flag_h_oman, );
+            Questions HQ4 = new Questions("aezgaeg", answers4, 1, R.drawable.flag_h_mozambique, );
             questions.add(HQ1);
             questions.add(HQ2);
             questions.add(HQ3);

@@ -1,0 +1,135 @@
+{
+  "questions": [
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Brasil", "Chine", "France", "Allemagne"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_brazil",
+      "raw": "R.raw.flag_e_brazil",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Italie", "Japon", "Nigéria", "Russie"],
+      "correctAnswerPosition": 3,
+      "flag": "R.drawable.flag_e_nigeria",
+      "raw": "R.raw.flag_e_nigeria",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Espagne", "Royaume-Unis", "Ukraine", "Etats-Unis"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_spain",
+      "raw": "R.raw.flag_e_spain",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Chine", "Italie", "Ukraine", "Russie"],
+      "correctAnswerPosition": 2,
+      "flag": "R.drawable.flag_e_italy",
+      "raw": "R.raw.flag_e_italy",
+      "difficulty": "easy"
+    },
+
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Colombie", "Egypte", "Ethiopie", "Finlande"],
+      "correctAnswerPosition": 3,
+      "flag": "R.drawable.flag_n_ethiopia",
+      "raw": "R.raw.flag_n_ethiopia",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Hongrie", "Inde", "Kenya", "Lithuanie"],
+      "correctAnswerPosition": 2,
+      "flag": "R.drawable.flag_n_india",
+      "raw": "R.raw.flag_n_india",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Philippines", "Portugal", "Suède", "Thailande"],
+      "correctAnswerPosition": 2,
+      "flag": "R.drawable.flag_n_portugal",
+      "raw": "R.raw.flag_n_portugal",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Portugal", "Colombie", "Kenya", "Suède"],
+      "correctAnswerPosition": 3,
+      "flag": "R.drawable.flag_n_kenya",
+      "raw": "R.raw.flag_n_kenya",
+      "difficulty": "medium"
+    },
+
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Bosnie-Herzégovine", "Cape Vert", "Érythrée", "Libye"],
+      "correctAnswerPosition": 3,
+      "flag": "R.drawable.flag_h_eritrea",
+      "raw": "R.raw.flag_h_eritrea",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Malawi", "Mongolie", "Mozambique", "Népal"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_malawi",
+      "raw": "R.raw.flag_h_malawi",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Oman", "Seychelles", "Suriname", "Ouzbékistan"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_oman",
+      "raw": "R.raw.flag_h_oman",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Mozambique", "Ouzbékistan", "Suriname", "Libye"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_mozambique",
+      "raw": "R.raw.flag_h_mozambique",
+      "difficulty": "hard"
+    },
+
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["1", "2", "3", "4"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.apptitle",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["1", "2", "3", "4"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.apptitle",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["1", "2", "3", "4"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.apptitle",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["1", "2", "3", "4"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.apptitle",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    }
+  ]
+}
