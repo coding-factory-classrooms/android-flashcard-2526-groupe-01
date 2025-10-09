@@ -45,7 +45,8 @@
 
     <ScrollView
         android:id="@+id/questionsListScrollView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/questionsListFootToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +55,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/flagOneImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="160.5dp"
+                app:srcCompat="@drawable/flag_e_france" />
+
+            <ImageButton
+                android:id="@+id/flagTwoImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="160.5dp"
+                app:srcCompat="@drawable/flag_e_china" />
+
+            <ImageButton
+                android:id="@+id/flagThreeImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="160.5dp"
+                app:srcCompat="@drawable/flag_e_brazil" />
+
+            <ImageButton
+                android:id="@+id/flagfourImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="160.5dp"
+                app:srcCompat="@drawable/flag_e_germany" />
+
+            <ImageButton
+                android:id="@+id/flagfiveImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="160.5dp"
+                app:srcCompat="@drawable/flag_e_italy" />
+
+            <ImageButton
+                android:id="@+id/flagSixImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="160.5dp"
+                app:srcCompat="@drawable/flag_e_japan" />
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
