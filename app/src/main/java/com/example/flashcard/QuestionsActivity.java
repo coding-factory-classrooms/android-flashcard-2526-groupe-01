@@ -29,7 +29,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
     // Variable  du nombre de click pour le button Valider
     int numberClickButton = 0;
-
+    private MediaPlayer blopyBlopaEasterEggs;
     private MediaPlayer CorrectMediaPlayer;
     private MediaPlayer WrongMediaPlayer;
     ArrayList<Questions> questionList;
@@ -53,13 +53,19 @@ public class QuestionsActivity extends AppCompatActivity {
         Intent srcIntent = getIntent();
         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
+        int d_raw = srcIntent.getIntExtra("d_raw", R.raw.e_ee_bb);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
-        ImageView difficultyImageView = findViewById(R.id.difficultyImageView);
-        difficultyImageView.setImageResource(d_logo);
+        ImageButton difficultyImageButton = findViewById(R.id.difficultyImageButton);
+        difficultyImageButton.setImageResource(d_logo);
+        this.blopyBlopaEasterEggs = MediaPlayer.create(getApplicationContext(),d_raw);
+        difficultyImageButton.setOnClickListener(view -> blopyBlopaEasterEggs.start());
+
+
         Questions Q = questionList.get(questionIndex);
         String correctAnswer = Q.answers.get(Q.correctAnswerPosition - 1);
+
         Collections.shuffle(Q.answers);
 
         // À mettre dans la boucle for en dessous (je crois :D)
