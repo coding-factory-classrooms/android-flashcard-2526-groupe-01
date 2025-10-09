@@ -67,10 +67,10 @@ public class QuestionsActivity extends AppCompatActivity {
         Collections.shuffle(Q.answers);
 
         // À mettre dans la boucle for en dessous (je crois :D)
-        String answerI = Q.answers.get(0);
-        String answerII = Q.answers.get(1);
-        String answerIII = Q.answers.get(2);
-        String answerIV = Q.answers.get(3);
+//        String answerI = Q.answers.get(0);
+//        String answerII = Q.answers.get(1);
+//        String answerIII = Q.answers.get(2);
+//        String answerIV = Q.answers.get(3);
 
         Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
 
