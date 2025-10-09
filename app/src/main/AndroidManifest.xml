@@ -15,7 +15,7 @@
             android:name=".QuestionsListActivity"
             android:exported="false" />
         <activity
-            android:name=".StatActivity"
+            android:name=".StatsActivity"
             android:exported="false" />
         <activity
             android:name=".QuestionsActivity"
