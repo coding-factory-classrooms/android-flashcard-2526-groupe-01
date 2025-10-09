@@ -46,15 +46,13 @@
         android:id="@+id/questionNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question 1/4"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
         app:layout_constraintStart_toStartOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        tools:text="Question 1/4" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar2" />
 
 
     <RadioGroup
@@ -71,13 +69,12 @@
         android:id="@+id/submitChoiceButtton"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
         android:text="Valider"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group" />
+        app:layout_constraintTop_toTopOf="@+id/radio_group" />
 
     <ImageButton
         android:id="@+id/difficultyImageButton"

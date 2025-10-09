@@ -29,6 +29,7 @@ public class StatsActivity extends AppCompatActivity {
         TextView score = findViewById(R.id.scoreTextView);
         ProgressBar progressBar = findViewById(R.id.scoreProgressBar);
         TextView percentage = findViewById(R.id.percentageProgressBar);
+        TextView difficulty = findViewById(R.id.difficultyLevelTextView);
 
         Button shareButton = findViewById(R.id.shareButton);
         Button homeButton = findViewById(R.id.homeButton);
@@ -38,14 +39,37 @@ public class StatsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        progressBar.setProgress(25);
+        Intent srcIntent = getIntent();
 
+        int scr = srcIntent.getIntExtra("scoree", 0);
+        int diff = srcIntent.getIntExtra("difficultyText", 0);
+
+        int perProgress = diff/4 * 100;
+        progressBar.setProgress(perProgress);
         String percentageProgress = progressBar.getProgress() + " %";
         percentage.setText(percentageProgress);
 
-    }
 
-    public void manageStats() {
+
+        if (diff == 0) {
+            String diffi = "Easy";
+            difficulty.setText("Level " + diffi);
+        }
+        if (diff == 1) {
+            String diffi = "Medium";
+            difficulty.setText("Level " + diffi);
+        }
+        if (diff == 2) {
+            String diffi = "Hard";
+            difficulty.setText("Level " + diffi);
+        }
+        if (diff == 3) {
+            String diffi = "Super Hard";
+            difficulty.setText("Level " + diffi);
+        }
+
+        score.setText(scr + " / 4");
+
 
     }
 }

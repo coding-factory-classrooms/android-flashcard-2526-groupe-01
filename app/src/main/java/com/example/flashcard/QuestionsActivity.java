@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -33,6 +34,9 @@ public class QuestionsActivity extends AppCompatActivity {
     private MediaPlayer CorrectMediaPlayer;
     private MediaPlayer WrongMediaPlayer;
     ArrayList<Questions> questionList;
+
+    int scoreText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,9 @@ public class QuestionsActivity extends AppCompatActivity {
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
+        ImageButton difficultyImageView = findViewById(R.id.button_image);
+        difficultyImageView.setImageResource(d_logo);
+        questionNumberTextView.setText("Question " + (questionIndex +1) + "/4");
         ImageButton difficultyImageButton = findViewById(R.id.difficultyImageButton);
         difficultyImageButton.setImageResource(d_logo);
         this.blopyBlopaEasterEggs = MediaPlayer.create(getApplicationContext(),d_raw);
@@ -170,6 +177,7 @@ public class QuestionsActivity extends AppCompatActivity {
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
             if (response == responseUser){
+                scoreText++;
                 Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
                 CorrectMediaPlayer.start();
             }
@@ -182,23 +190,28 @@ public class QuestionsActivity extends AppCompatActivity {
             Q.answered = true;
             submitChoiceButtton.setText("Prochaine question !");
 
-
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
-                if (questionIndex + 1 < questionList.size()) {
+                if (questionIndex + 1 <= questionList.size()) {
+//                    questionNumberTextView.setText("Question " + indexText++ + "/4");
                     // Encore des questions -> aller à la suivante
                     Intent intent = new Intent(this, QuestionsActivity.class);
                     intent.putParcelableArrayListExtra("questions", questionList);
                     intent.putExtra("questionindex", questionIndex + 1);
+                    intent.putExtra("scoree", scoreText);
                     startActivity(intent);
                     finish();
                 } else {
                     // Plus de questions -> fin du quiz
                     Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
 
-                    // rediriger vers les stat de la partie ici
-                     startActivity(new Intent(this, MainActivity.class));
-                     finish();
+                    // rediriger vers les stats de la partie ici
+                    Intent intent = new Intent(this, StatsActivity.class);
+                    int scoresrc = scoreText;
+                    intent.putExtra("difficultyText", selectedDif);
+                    intent.putExtra("scoree", scoresrc);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
