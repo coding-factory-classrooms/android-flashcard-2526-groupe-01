@@ -7,4 +7,54 @@
     android:layout_height="match_parent"
     tools:context=".QuestionsListActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/questionsListFootToolbar"
+        android:layout_width="0dp"
+        android:layout_height="15dp"
+        android:background="#9D06FB"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/questionsListToolbar"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:background="#9D06FB"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/questionsListTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Liste des Questions"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/questionsListToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/questionsListToolbar" />
+
+    <ScrollView
+        android:id="@+id/questionsListScrollView"
+        android:layout_width="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/questionsListFootToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionsListToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

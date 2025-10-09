@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // All buttons in the main activity/launch page
     private Button startButton;
-    private Button questionsListButton;
+    private Button questionsListDifficultyButton;
     private Button statButton;
     private Button aboutButton;
 
@@ -51,13 +51,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Here is where we're linking our variables "Button" to their equivalents in activity_main.xml
         startButton = findViewById(R.id.startButton);
-        questionsListButton = findViewById(R.id.questionsListButton);
+        questionsListDifficultyButton = findViewById(R.id.questionsListDifficultyButton);
         statButton = findViewById(R.id.statButton);
         aboutButton = findViewById(R.id.aboutButton);
 
         // Heart of the activity
         startButton.setOnClickListener(this);
-        questionsListButton.setOnClickListener(this);
+        questionsListDifficultyButton.setOnClickListener(this);
         statButton.setOnClickListener(this);
         aboutButton.setOnClickListener(this);
     }
@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dialog.show();
 
 
-        } else if (id == R.id.questionsListButton) {
+        } else if (id == R.id.questionsListDifficultyButton) {
 
             // go to questionsListActivity - Here is the logic for the transition to the questions list page
-            Intent intent = new Intent(this, QuestionsListActivity.class);
+            Intent intent = new Intent(this, QuestionsListActivityDifficulty.class);
             startActivity(intent);
 
         } else if (id == R.id.statButton) {
@@ -148,29 +148,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Questions for the easy difficulty
             List<String> answers1 = new ArrayList<>();
-            answers1.add("France");
-            answers1.add("Inde");
-            answers1.add("Pays-Bas");
+            answers1.add("Brasil");
             answers1.add("Chine");
+            answers1.add("France");
+            answers1.add("Allemagne");
             List<String> answers2 = new ArrayList<>();
-            answers2.add("test");
-            answers2.add("test");
-            answers2.add("test");
-            answers2.add("ooooo");
+            answers2.add("Italie");
+            answers2.add("Japon");
+            answers2.add("Nigéria");
+            answers2.add("Russie");
             List<String> answers3 = new ArrayList<>();
-            answers3.add("5eme");
-            answers3.add("2eme");
-            answers3.add("2eme");
-            answers3.add("2eme");
+            answers3.add("Espagne");
+            answers3.add("Royaume-Unis");
+            answers3.add("Ukraine");
+            answers3.add("Etats-Unis");
             List<String> answers4 = new ArrayList<>();
-            answers4.add("parfait");
-            answers4.add("parfait");
-            answers4.add("parfaitement");
-            answers4.add("parfait");
-            Questions EQ1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 3, 0, false);
-            Questions EQ2 = new Questions("zfqqzf", answers2, 4, 0, false);
-            Questions EQ3 = new Questions("qzfqzf", answers3, 1, 0, false);
-            Questions EQ4 = new Questions("zqfqzf", answers4, 3, 0, false);
+            answers4.add("Chine");
+            answers4.add("Italie");
+            answers4.add("Ukraine");
+            answers4.add("Russie");
+            Questions EQ1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_e_brazil, false);
+            Questions EQ2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 3, R.drawable.flag_e_nigeria, false);
+            Questions EQ3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 1, R.drawable.flag_e_spain, false);
+            Questions EQ4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 2, R.drawable.flag_e_italy, false);
             questions.add(EQ1);
             questions.add(EQ2);
             questions.add(EQ3);
@@ -180,29 +180,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Questions for the medium difficulty
             List<String> answers1 = new ArrayList<>();
-            answers1.add("test");
-            answers1.add("test");
-            answers1.add("test");
-            answers1.add("test");
+            answers1.add("Colombie");
+            answers1.add("Egypte");
+            answers1.add("Ethiopie");
+            answers1.add("Finlande");
             List<String> answers2 = new ArrayList<>();
-            answers2.add("ffqfq");
-            answers2.add("zfq");
-            answers2.add("fzqs");
-            answers2.add("fzqsf");
+            answers2.add("Hongrie");
+            answers2.add("Inde");
+            answers2.add("Kenya");
+            answers2.add("Lithuanie");
             List<String> answers3 = new ArrayList<>();
-            answers3.add("fzqzf");
-            answers3.add("fzqsf");
-            answers3.add("fzqs");
-            answers3.add("fzqsfz");
+            answers3.add("Philippines");
+            answers3.add("Portugal");
+            answers3.add("Suède");
+            answers3.add("Thailande");
             List<String> answers4 = new ArrayList<>();
-            answers4.add("fzqsf");
-            answers4.add("fzqsfzq");
-            answers4.add("fzqsf");
-            answers4.add("fzqsf");
-            Questions MQ1 = new Questions("qzfqzfqzf", answers1, 1, 0, false);
-            Questions MQ2 = new Questions("qzfqzf", answers2, 1, 0, false);
-            Questions MQ3 = new Questions("zfqzfq", answers3, 1, 0, false);
-            Questions MQ4 = new Questions("zfqzf", answers4, 1, 0, false);
+            answers4.add("Portugal");
+            answers4.add("Colombie");
+            answers4.add("Kenya");
+            answers4.add("Suède");
+            Questions MQ1 = new Questions("qzfqzfqzf", answers1, 3, R.drawable.flag_n_ethiopia, false);
+            Questions MQ2 = new Questions("qzfqzf", answers2, 2, R.drawable.flag_n_india, false);
+            Questions MQ3 = new Questions("zfqzfq", answers3, 2, R.drawable.flag_n_portugal, false);
+            Questions MQ4 = new Questions("zfqzf", answers4, 3, R.drawable.flag_n_kenya, false);
             questions.add(MQ1);
             questions.add(MQ2);
             questions.add(MQ3);
@@ -212,29 +212,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Questions for the hard difficulty
             List<String> answers1 = new ArrayList<>();
-            answers1.add("test");
-            answers1.add("test");
-            answers1.add("test");
-            answers1.add("test");
+            answers1.add("Bosnie-Herzégovine");
+            answers1.add("Cape Vert");
+            answers1.add("Érythrée");
+            answers1.add("Libye");
             List<String> answers2 = new ArrayList<>();
-            answers2.add("ffqfq");
-            answers2.add("zfq");
-            answers2.add("fzqs");
-            answers2.add("fzqsf");
+            answers2.add("Malawi");
+            answers2.add("Mongolie");
+            answers2.add("Mozambique");
+            answers2.add("Népal");
             List<String> answers3 = new ArrayList<>();
-            answers3.add("fzqzf");
-            answers3.add("fzqsf");
-            answers3.add("fzqs");
-            answers3.add("fzqsfz");
+            answers3.add("Oman");
+            answers3.add("Seychelles");
+            answers3.add("Suriname");
+            answers3.add("Ouzbékistan");
             List<String> answers4 = new ArrayList<>();
-            answers4.add("fzqsf");
-            answers4.add("fzqsfzq");
-            answers4.add("fzqsf");
-            answers4.add("fzqsf");
-            Questions HQ1 = new Questions("ezeggez", answers1, 2, 0, false);
-            Questions HQ2 = new Questions("aegfegazeg", answers2, 1, 0, false);
-            Questions HQ3 = new Questions("aezgfaeg", answers3, 1, 0, false);
-            Questions HQ4 = new Questions("aezgaeg", answers4, 1, 0, false);
+            answers4.add("Mozambique");
+            answers4.add("Ouzbékistan");
+            answers4.add("Suriname");
+            answers4.add("Libye");
+            Questions HQ1 = new Questions("ezeggez", answers1, 3, R.drawable.flag_h_eritrea, false);
+            Questions HQ2 = new Questions("aegfegazeg", answers2, 1, R.drawable.flag_h_malawi, false);
+            Questions HQ3 = new Questions("aezgfaeg", answers3, 1, R.drawable.flag_h_oman, false);
+            Questions HQ4 = new Questions("aezgaeg", answers4, 1, R.drawable.flag_h_mozambique, false);
             questions.add(HQ1);
             questions.add(HQ2);
             questions.add(HQ3);
