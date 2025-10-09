@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -24,7 +22,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class QuestionsActivity extends AppCompatActivity {
 
@@ -33,6 +30,11 @@ public class QuestionsActivity extends AppCompatActivity {
     private MediaPlayer blopyBlopaEasterEggs;
     private MediaPlayer CorrectMediaPlayer;
     private MediaPlayer WrongMediaPlayer;
+
+    private MediaPlayer BresilPlayer;
+    private MediaPlayer ItaliePlayer;
+    private MediaPlayer EspagnePlayer;
+    private MediaPlayer Inde;
     ArrayList<Questions> questionList;
 
     int scoreText;
@@ -49,10 +51,16 @@ public class QuestionsActivity extends AppCompatActivity {
             return insets;
         });
 
+        Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
+        submitChoiceButtton.setVisibility(View.GONE);
         // Ajouter le son Bonne reponse
         this.CorrectMediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.duolingo_correct);
         // Ajouter le son mauvaise reponse
         this.WrongMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_buzzer);
+        this.BresilPlayer = MediaPlayer.create(getApplicationContext(), R.raw.flag_e_brazil);
+        this.EspagnePlayer = MediaPlayer.create(getApplicationContext(), R.raw.flag_e_spain);
+        this.ItaliePlayer = MediaPlayer.create(getApplicationContext(), R.raw.italie);
+        this.Inde = MediaPlayer.create(getApplicationContext(), R.raw.inde);
 
         Intent srcIntent = getIntent();
         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
@@ -129,6 +137,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         } else {
                             bg.setColor(Color.parseColor("#7D4FFE"));
                             r.setTextColor(Color.WHITE);
+                            submitChoiceButtton.setVisibility(View.VISIBLE);
                         }
                         r.setBackground(bg);
                     }
@@ -139,7 +148,7 @@ public class QuestionsActivity extends AppCompatActivity {
         // Recupere la bonne reponse
         int response = Q.correctAnswerPosition;
 
-        Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
+
         submitChoiceButtton.setOnClickListener(view -> {
 
             numberClickButton++;
@@ -152,7 +161,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
-            radioGroup.setVisibility(View.GONE);
+            radioGroup.setVisibility(View.VISIBLE);
             if (response == responseUser){
 
                 scoreText++;
@@ -202,7 +211,7 @@ public class QuestionsActivity extends AppCompatActivity {
         ImageButton button_image = findViewById(R.id.button_image);
         button_image.setImageResource(Q.flag);
         button_image.setOnClickListener( view -> {
-            WrongMediaPlayer.start();
+
         });
     }
 }

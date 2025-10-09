@@ -85,6 +85,7 @@
         android:layout_marginBottom="32dp"
         android:text="Valider"
         android:textSize="20sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
