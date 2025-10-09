@@ -169,7 +169,6 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
             }
             // Changement du text du button valider en "prochaine question"
-            Q.answered = true;
             submitChoiceButtton.setText("Prochaine question !");
 
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
