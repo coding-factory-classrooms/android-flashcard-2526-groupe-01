@@ -30,7 +30,7 @@ public class StatsActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Get page components
+        // Get xml components
         TextView score = findViewById(R.id.scoreTextView);
         ProgressBar progressBar = findViewById(R.id.scoreProgressBar);
         TextView percentage = findViewById(R.id.percentageProgressBar);
@@ -39,6 +39,7 @@ public class StatsActivity extends AppCompatActivity {
         Button shareButton = findViewById(R.id.shareButton);
         Button homeButton = findViewById(R.id.homeButton);
 
+        // Get objects
         Intent srcIntent = getIntent();
 
         int scoreText = getIntent().getIntExtra("scoretext", 0);
@@ -54,17 +55,17 @@ public class StatsActivity extends AppCompatActivity {
 
         // Set Difficulty Text
         if (diff == 0) {
-            diffi = "Easy";
-            difficulty.setText("Level " + diffi);
+            diffi = "Facile";
+            difficulty.setText("Niveau " + diffi);
         } else if (diff == 1) {
-            diffi = "Medium";
-            difficulty.setText("Level " + diffi);
+            diffi = "Moyen";
+            difficulty.setText("Niveau " + diffi);
         } else if (diff == 2) {
-            diffi = "Hard";
-            difficulty.setText("Level " + diffi);
+            diffi = "Difficile";
+            difficulty.setText("Niveau " + diffi);
         } else if (diff == 3) {
-            diffi = "Super Hard";
-            difficulty.setText("Level " + diffi);
+            diffi = "Hardcore";
+            difficulty.setText("Niveau " + diffi);
         }
 
         score.setText(scoreText + " / 4");
@@ -73,7 +74,7 @@ public class StatsActivity extends AppCompatActivity {
         shareButton.setOnClickListener(view -> {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Broo i just did " + scoreText + " / 4 on the GuessTheFlag");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "J'ai eu " + scoreText + " / 4 sur Guess the Flag !!");
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);

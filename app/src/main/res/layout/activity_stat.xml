@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:backgroundTint="#9D06FB"
-        android:text="Home"
+        android:text="Menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shareButton" />
@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:backgroundTint="#9D06FB"
-        android:text="Share my Score"
+        android:text="Partager mon Score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/percentageProgressBar" />
