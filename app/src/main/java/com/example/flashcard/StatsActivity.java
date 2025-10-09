@@ -1,10 +1,15 @@
 package com.example.flashcard;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,42 +39,52 @@ public class StatsActivity extends AppCompatActivity {
         Button shareButton = findViewById(R.id.shareButton);
         Button homeButton = findViewById(R.id.homeButton);
 
+        Intent srcIntent = getIntent();
+
+        int scoreText = getIntent().getIntExtra("scoretext", 0);
+        int diff = getIntent().getIntExtra("diffScore", 0);
+
+        // Calculate and set % progress bar
+        float perProgress = (float) scoreText /4 * 100f;
+        progressBar.setProgress((int) perProgress);
+        String percentageProgress = progressBar.getProgress() + " %";
+        percentage.setText(percentageProgress);
+
+        String diffi;
+
+        // Set Difficulty Text
+        if (diff == 0) {
+            diffi = "Easy";
+            difficulty.setText("Level " + diffi);
+        } else if (diff == 1) {
+            diffi = "Medium";
+            difficulty.setText("Level " + diffi);
+        } else if (diff == 2) {
+            diffi = "Hard";
+            difficulty.setText("Level " + diffi);
+        } else if (diff == 3) {
+            diffi = "Super Hard";
+            difficulty.setText("Level " + diffi);
+        }
+
+        score.setText(scoreText + " / 4");
+
+        // Instance created when share button clicked
+        shareButton.setOnClickListener(view -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Broo i just did " + scoreText + " / 4 on the GuessTheFlag");
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        });
+
+        // Home redirection when button clicked
         homeButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
-
-        Intent srcIntent = getIntent();
-
-        int scr = srcIntent.getIntExtra("scoree", 0);
-        int diff = srcIntent.getIntExtra("difficultyText", 0);
-
-        int perProgress = diff/4 * 100;
-        progressBar.setProgress(perProgress);
-        String percentageProgress = progressBar.getProgress() + " %";
-        percentage.setText(percentageProgress);
-
-
-
-        if (diff == 0) {
-            String diffi = "Easy";
-            difficulty.setText("Level " + diffi);
-        }
-        if (diff == 1) {
-            String diffi = "Medium";
-            difficulty.setText("Level " + diffi);
-        }
-        if (diff == 2) {
-            String diffi = "Hard";
-            difficulty.setText("Level " + diffi);
-        }
-        if (diff == 3) {
-            String diffi = "Super Hard";
-            difficulty.setText("Level " + diffi);
-        }
-
-        score.setText(scr + " / 4");
-
 
     }
 }

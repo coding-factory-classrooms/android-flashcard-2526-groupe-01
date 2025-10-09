@@ -39,7 +39,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
     int scoreText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +66,7 @@ public class QuestionsActivity extends AppCompatActivity {
         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
         int d_raw = srcIntent.getIntExtra("d_raw", R.raw.e_ee_bb);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
+        scoreText = getIntent().getIntExtra("scoretext", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
         Questions Q = questionList.get(questionIndex);
 
@@ -84,6 +84,7 @@ public class QuestionsActivity extends AppCompatActivity {
         difficultyImageButton.setOnClickListener(view -> blopyBlopaEasterEggs.start());
 
 
+        // Questions Q = questionList.get(questionIndex);
         String correctAnswer = Q.answers.get(Q.correctAnswerPosition - 1);
 
         Collections.shuffle(Q.answers);
@@ -159,37 +160,36 @@ public class QuestionsActivity extends AppCompatActivity {
             RadioButton selectionButton = findViewById(checkedId);
             int responseUser = (Integer)selectionButton.getTag();
 
-            // si le choix de l'utilisateur et de la bonne reponse sont le meme
-            // l'utilisateur a trouver passer a la 2eme question
-            radioGroup.setVisibility(View.VISIBLE);
-            if (response == responseUser){
-
-                scoreText++;
-                feedbackTextView.setText("Bravo ! Bonne réponse !");
-                if (numberClickButton <= 1) {
-                    CorrectMediaPlayer.start();
+            if (!Q.answered) {
+                // si le choix de l'utilisateur et de la bonne reponse sont le meme
+                // l'utilisateur a trouver passer a la 2eme question
+                radioGroup.setVisibility(View.VISIBLE);
+                if (response == responseUser) {
+                    scoreText++;
+                    feedbackTextView.setText("Bravo ! Bonne réponse !");
+                    if (numberClickButton <= 1) {
+                        CorrectMediaPlayer.start();
+                    }
                 }
-            }
-            // sinon mauvaise reponse / afficher faux et passer a la suite
-            else {
-                feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
-                if (numberClickButton <= 1) {
-                    WrongMediaPlayer.start();
+                // sinon mauvaise reponse / afficher faux et passer a la suite
+                else {
+                    feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
+                    if (numberClickButton <= 1) {
+                        WrongMediaPlayer.start();
+                    }
                 }
+                // Changement du text du button valider en "prochaine question"
+                Q.answered = true;
+                submitChoiceButtton.setText("Prochaine question !");
             }
-            // Changement du text du button valider en "prochaine question"
-            Q.answered = true;
-            submitChoiceButtton.setText("Prochaine question !");
-
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
-            if (numberClickButton > 1) {
-                if (questionIndex + 1 <= questionList.size()) {
-//                    questionNumberTextView.setText("Question " + indexText++ + "/4");
+
+                if (questionIndex + 1 < questionList.size()) {
                     // Encore des questions -> aller à la suivante
                     Intent intent = new Intent(this, QuestionsActivity.class);
                     intent.putParcelableArrayListExtra("questions", questionList);
                     intent.putExtra("questionindex", questionIndex + 1);
-                    intent.putExtra("scoree", scoreText);
+                    intent.putExtra("scoretext", scoreText);
                     startActivity(intent);
                     finish();
                 } else {
@@ -197,14 +197,12 @@ public class QuestionsActivity extends AppCompatActivity {
                     Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
 
                     // rediriger vers les stats de la partie ici
-                    Intent intent = new Intent(this, StatsActivity.class);
-                    int scoresrc = scoreText;
-                    intent.putExtra("difficultyText", selectedDif);
-                    intent.putExtra("scoree", scoresrc);
-                    startActivity(intent);
+                    Intent intentStats = new Intent(this, StatsActivity.class);
+                    intentStats.putExtra("scoretext", scoreText);
+                    startActivity(intentStats);
                     finish();
                 }
-            }
+
         });
 
 
