@@ -1,6 +1,7 @@
 package com.example.flashcard;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -28,6 +29,8 @@ public class QuestionsActivity extends AppCompatActivity {
     // Variable  du nombre de click pour le button Valider
     int numberClickButton = 0;
 
+    private MediaPlayer CorrectMediaPlayer;
+    private MediaPlayer WrongMediaPlayer;
     ArrayList<Questions> questionList;
 
     @Override
@@ -40,6 +43,12 @@ public class QuestionsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        // Ajouter le son Bonne reponse
+        this.CorrectMediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.duolingo_correct);
+        // Ajouter le son mauvaise reponse
+        this.WrongMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_buzzer);
+
+
 
         Intent srcIntent = getIntent();
         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
@@ -121,11 +130,12 @@ public class QuestionsActivity extends AppCompatActivity {
             // l'utilisateur a trouver passer a la 2eme question
             if (response == responseUser){
                 Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
-
+                CorrectMediaPlayer.start();
             }
             // sinon mauvaise reponse / afficher faux et passer a la suite
             else {
                 Toast.makeText(this, "Oh non c'est pas bon, la bonne reponse etait : " + response, Toast.LENGTH_SHORT).show();
+                WrongMediaPlayer.start();
             }
             // Changement du text du button valider en "prochaine question"
             Q.answered = true;

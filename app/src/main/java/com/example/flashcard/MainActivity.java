@@ -1,5 +1,6 @@
 package com.example.flashcard;
 
+
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -152,20 +153,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             answers1.add("Pays-Bas");
             answers1.add("Chine");
             List<String> answers2 = new ArrayList<>();
-            answers2.add("ffqfq");
-            answers2.add("zfq");
-            answers2.add("fzqs");
-            answers2.add("fzqsf");
+            answers2.add("test");
+            answers2.add("test");
+            answers2.add("test");
+            answers2.add("test");
             List<String> answers3 = new ArrayList<>();
-            answers3.add("fzqzf");
-            answers3.add("fzqsf");
-            answers3.add("fzqs");
-            answers3.add("fzqsfz");
+            answers3.add("2eme");
+            answers3.add("2eme");
+            answers3.add("2eme");
+            answers3.add("2eme");
             List<String> answers4 = new ArrayList<>();
-            answers4.add("fzqsf");
-            answers4.add("chips");
-            answers4.add("fzqsf");
-            answers4.add("fzqsf");
+            answers4.add("parfait");
+            answers4.add("parfait");
+            answers4.add("parfait");
+            answers4.add("parfait");
             Questions EQ1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 3, 0, false);
             Questions EQ2 = new Questions("zfqqzf", answers2, 1, 0, false);
             Questions EQ3 = new Questions("qzfqzf", answers3, 1, 0, false);
