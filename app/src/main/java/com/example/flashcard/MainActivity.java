@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         questionsInitialization(selectedDif, intent);
                         startActivity(intent);
                         dialog.dismiss();
+
                     });
             AlertDialog dialog = difficultyChoiceDialog.create();
             dialog.show();

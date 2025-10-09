@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar6" />
 
     <TextView
-        android:id="@+id/difficultLevelTextView"
+        android:id="@+id/difficultyLevelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -65,7 +65,7 @@
         android:text="2/4"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/scoreTitleTextView"
-        app:layout_constraintTop_toBottomOf="@+id/difficultLevelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/difficultyLevelTextView" />
 
     <TextView
         android:id="@+id/scoreTitleTextView"
@@ -77,7 +77,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficultLevelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/difficultyLevelTextView" />
 
     <ProgressBar
         android:id="@+id/scoreProgressBar"
@@ -90,7 +90,7 @@
         android:progressTint="#9D06FB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/difficultLevelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/difficultyLevelTextView" />
 
     <TextView
         android:id="@+id/percentageProgressBar"
