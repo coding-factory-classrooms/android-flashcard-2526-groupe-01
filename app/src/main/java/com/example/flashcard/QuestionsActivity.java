@@ -1,13 +1,15 @@
 package com.example.flashcard;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,8 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class QuestionsActivity extends AppCompatActivity {
 
@@ -43,27 +44,22 @@ public class QuestionsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         // Ajouter le son Bonne reponse
         this.CorrectMediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.duolingo_correct);
         // Ajouter le son mauvaise reponse
         this.WrongMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_buzzer);
-
-
 
         Intent srcIntent = getIntent();
         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
-
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
         ImageView difficultyImageView = findViewById(R.id.difficultyImageView);
         difficultyImageView.setImageResource(d_logo);
-
         Questions Q = questionList.get(questionIndex);
-
         String correctAnswer = Q.answers.get(Q.correctAnswerPosition - 1);
-
         Collections.shuffle(Q.answers);
 
         // À mettre dans la boucle for en dessous (je crois :D)
@@ -71,19 +67,62 @@ public class QuestionsActivity extends AppCompatActivity {
 //        String answerII = Q.answers.get(1);
 //        String answerIII = Q.answers.get(2);
 //        String answerIV = Q.answers.get(3);
-
         Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
-
         RadioGroup group = findViewById(R.id.radio_group);
-
+        group.setPadding(10,10,10,10);
     // création d'un button pour chaque reponse
         for (int i = 0; i < Q.answers.size(); i++) {
+
+            // 1️⃣ Création du RadioButton
             RadioButton radioButton = new RadioButton(this);
+
+
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setCornerRadius(30);
+            drawable.setColor(Color.parseColor("#7D4FFE"));
+            radioButton.setBackground(drawable);
+            radioButton.setPadding(30, 20, 30, 20);
+
+            // Layout : largeur pleine et les marge
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 10, 0, 10);
+            radioButton.setLayoutParams(params);
+
+            // Texte
             radioButton.setText(Q.answers.get(i));
             radioButton.setTag(i + 1);
-            radioButton.setPadding(8, 8, 8, 8);
+            radioButton.setTextColor(Color.WHITE);
+            radioButton.setTextSize(20);
             group.addView(radioButton);
+
+            // Listener pour gérer la sélection
+            radioButton.setOnClickListener(view -> {
+                for (int j = 0; j < group.getChildCount(); j++) {
+                    View c = group.getChildAt(j);
+                    if (c instanceof RadioButton) {
+                        RadioButton r = (RadioButton) c;
+
+                        // Chaque bouton a son drawable unique
+                        //evite que les buttons change tous de couleur en meme temps
+                        GradientDrawable bg = new GradientDrawable();
+                        bg.setCornerRadius(30);
+
+                        if (r.isChecked()) {
+                            bg.setColor(Color.parseColor("#C49FFF"));
+                            r.setTextColor(Color.WHITE);
+                        } else {
+                            bg.setColor(Color.parseColor("#7D4FFE"));
+                            r.setTextColor(Color.WHITE);
+                        }
+                        r.setBackground(bg);
+                    }
+                }
+            });
         }
+
 //        for (int i = 0; i < Q.answers.size(); i++) {
 //            // Instancier un RadioButton
 //
@@ -108,11 +147,8 @@ public class QuestionsActivity extends AppCompatActivity {
 //        threeRadioButton.setTag(3);
 //        fourRadioButton.setTag(4);
 
-
-
         // Recupere la bonne reponse
         int response = Q.correctAnswerPosition;
-
 
         Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
         submitChoiceButtton.setOnClickListener(view -> {
@@ -159,6 +195,12 @@ public class QuestionsActivity extends AppCompatActivity {
                      finish();
                 }
             }
+        });
+
+
+        ImageButton button_image = findViewById(R.id.button_image);
+        button_image.setOnClickListener( view -> {
+            WrongMediaPlayer.start();
         });
     }
 }
