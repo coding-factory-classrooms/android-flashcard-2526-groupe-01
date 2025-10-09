@@ -69,6 +69,7 @@
         android:id="@+id/submitChoiceButtton"
         android:layout_width="260dp"
         android:layout_height="50dp"
+        android:layout_marginTop="228dp"
         android:text="Valider"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
