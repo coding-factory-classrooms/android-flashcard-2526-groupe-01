@@ -126,6 +126,8 @@ public class QuestionsActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, QuestionsActivity.class);
                 intent.putParcelableArrayListExtra("questionlist", questionList);
                 intent.putExtra("questionindex", questionIndex + 1);
+                int questionNumber = 1;
+                questionNumberTextView.setText("Question " + questionNumber++ + "/4");
                 startActivity(intent);
             }
         });
