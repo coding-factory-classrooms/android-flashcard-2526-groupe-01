@@ -74,7 +74,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
         Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
 
-
         RadioGroup group = findViewById(R.id.radio_group);
 
     // création d'un button pour chaque reponse
@@ -150,6 +149,7 @@ public class QuestionsActivity extends AppCompatActivity {
                     intent.putParcelableArrayListExtra("questions", questionList);
                     intent.putExtra("questionindex", questionIndex + 1);
                     startActivity(intent);
+                    finish();
                 } else {
                     // Plus de questions -> fin du quiz
                     Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
