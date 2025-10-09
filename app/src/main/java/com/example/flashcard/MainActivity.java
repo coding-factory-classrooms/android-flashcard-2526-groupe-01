@@ -143,22 +143,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private int setDifficultyRaw(int selectedDif) {
-        Intent intentStats = new Intent(this, StatsActivity.class);
         int d_raw = 0;
         if (selectedDif == 0) {
             d_raw = R.raw.e_ee_bb;
-            intentStats.putExtra("diffScore", selectedDif);
         } else if (selectedDif == 1) {
             d_raw = R.raw.m_ee_bb;
-            intentStats.putExtra("diffScore", selectedDif);
         } else if (selectedDif == 2) {
             d_raw = R.raw.h_ee_bb;
-            intentStats.putExtra("diffScore", selectedDif);
         } else if (selectedDif == 3) {
             d_raw = R.raw.hc_ee_bb;
-            intentStats.putExtra("diffScore", selectedDif);
         }
-        startActivity(intentStats);
         return d_raw;
     }
 

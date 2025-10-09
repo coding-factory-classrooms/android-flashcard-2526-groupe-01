@@ -47,7 +47,7 @@ public class StatsActivity extends AppCompatActivity {
         Intent srcIntent = getIntent();
 
         int scoreText = getIntent().getIntExtra("scoretext", 0);
-        int diff = getIntent().getIntExtra("diffScore", 0);
+        int selectedDif = getIntent().getIntExtra("selecteddif", -1);
         ArrayList<Questions> wrongAnswersList = getIntent().getParcelableArrayListExtra("wrongAnswersList");
 
         // Calculate and set % progress bar
@@ -56,21 +56,10 @@ public class StatsActivity extends AppCompatActivity {
         String percentageProgress = progressBar.getProgress() + " %";
         percentage.setText(percentageProgress);
 
-        String diffi;
-
         // Set Difficulty Text
-        if (diff == 0) {
-            diffi = "Facile";
-            difficulty.setText("Niveau " + diffi);
-        } else if (diff == 1) {
-            diffi = "Moyen";
-            difficulty.setText("Niveau " + diffi);
-        } else if (diff == 2) {
-            diffi = "Difficile";
-            difficulty.setText("Niveau " + diffi);
-        } else if (diff == 3) {
-            diffi = "Hardcore";
-            difficulty.setText("Niveau " + diffi);
+        String[] labels = {"Facile", "Moyen", "Difficile", "Hardcore"};
+        if (selectedDif >= 0 && selectedDif < labels.length) {
+            difficulty.setText("Niveau : " + labels[selectedDif]);
         }
 
         score.setText(scoreText + " / 4");

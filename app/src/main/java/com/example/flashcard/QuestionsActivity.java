@@ -36,9 +36,8 @@ public class QuestionsActivity extends AppCompatActivity {
     private MediaPlayer EspagnePlayer;
     private MediaPlayer Inde;
     ArrayList<Questions> questionList;
-    ArrayList<Questions> wrongAnswersList = new ArrayList<>();
+    ArrayList<Questions> wrongAnswersList;
 
-    int currentQuestionIndex = 0;
     int scoreText;
 
     @Override
@@ -206,9 +205,9 @@ public class QuestionsActivity extends AppCompatActivity {
                     // rediriger vers les stats de la partie ici
                     Intent intentStats = new Intent(this, StatsActivity.class);
                     intentStats.putParcelableArrayListExtra("wrongAnswersList", wrongAnswersList);
-                    wrongAnswersList.size();
                     intentStats.putExtra("questionindex", questionIndex);
                     intentStats.putExtra("scoretext", scoreText);
+                    intentStats.putExtra("selecteddif", selectedDif);
                     startActivity(intentStats);
                     finish();
                 }
