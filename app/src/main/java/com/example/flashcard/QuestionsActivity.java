@@ -59,7 +59,6 @@ public class QuestionsActivity extends AppCompatActivity {
         int d_raw = srcIntent.getIntExtra("d_raw", R.raw.e_ee_bb);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
         scoreText = getIntent().getIntExtra("scoretext", 0);
-        Toast.makeText(this, "Score au démarrage : " + scoreText, Toast.LENGTH_SHORT).show();
         questionList = srcIntent.getParcelableArrayListExtra("questions");
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
         ImageButton difficultyImageView = findViewById(R.id.button_image);

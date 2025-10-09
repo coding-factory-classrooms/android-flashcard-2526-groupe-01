@@ -1,9 +1,13 @@
 package com.example.flashcard;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,13 +30,6 @@ public class StatsActivity extends AppCompatActivity {
             return insets;
         });
 
-        Intent srcIntent = getIntent();
-
-        int scoreText = getIntent().getIntExtra("scoretext", 0);
-        int diff = srcIntent.getIntExtra("diffScore", 0);
-        Toast.makeText(this, "Score au démarrage : " + scoreText, Toast.LENGTH_SHORT).show();
-
-
         // Get page components
         TextView score = findViewById(R.id.scoreTextView);
         ProgressBar progressBar = findViewById(R.id.scoreProgressBar);
@@ -42,13 +39,20 @@ public class StatsActivity extends AppCompatActivity {
         Button shareButton = findViewById(R.id.shareButton);
         Button homeButton = findViewById(R.id.homeButton);
 
-        int perProgress = diff/4 * 100;
-        progressBar.setProgress(perProgress);
+        Intent srcIntent = getIntent();
+
+        int scoreText = getIntent().getIntExtra("scoretext", 0);
+        int diff = srcIntent.getIntExtra("diffScore", 0);
+
+        // Calculate and set % progress bar
+        float perProgress = (float) scoreText /4 * 100f;
+        progressBar.setProgress((int) perProgress);
         String percentageProgress = progressBar.getProgress() + " %";
         percentage.setText(percentageProgress);
 
         String diffi;
 
+        // Set Difficulty Text
         if (diff == 0) {
             diffi = "Easy";
             difficulty.setText("Level " + diffi);
@@ -65,13 +69,21 @@ public class StatsActivity extends AppCompatActivity {
 
         score.setText(scoreText + " / 4");
 
+        // Instance created when share button clicked
+        shareButton.setOnClickListener(view -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Broo i just did " + scoreText + " / 4 on the GuessTheFlag");
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        });
+
+        // Home redirection when button clicked
         homeButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        });
-
-        shareButton.setOnClickListener(view -> {
-
         });
 
     }
