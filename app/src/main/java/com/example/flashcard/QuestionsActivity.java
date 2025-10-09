@@ -37,7 +37,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
     int scoreText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +58,8 @@ public class QuestionsActivity extends AppCompatActivity {
         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
         int d_raw = srcIntent.getIntExtra("d_raw", R.raw.e_ee_bb);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
+        scoreText = getIntent().getIntExtra("scoretext", 0);
+        Toast.makeText(this, "Score au démarrage : " + scoreText, Toast.LENGTH_SHORT).show();
         questionList = srcIntent.getParcelableArrayListExtra("questions");
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
         ImageButton difficultyImageView = findViewById(R.id.button_image);
@@ -174,31 +175,32 @@ public class QuestionsActivity extends AppCompatActivity {
             RadioButton selectionButton = findViewById(checkedId);
             int responseUser = (Integer)selectionButton.getTag();
 
-            // si le choix de l'utilisateur et de la bonne reponse sont le meme
-            // l'utilisateur a trouver passer a la 2eme question
-            if (response == responseUser){
-                scoreText++;
-                Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
-                CorrectMediaPlayer.start();
+            if (!Q.answered) {
+                // si le choix de l'utilisateur et de la bonne reponse sont le meme
+                // l'utilisateur a trouver passer a la 2eme question
+                if (response == responseUser) {
+                    scoreText++;
+                    Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
+                    CorrectMediaPlayer.start();
+                }
+                // sinon mauvaise reponse / afficher faux et passer a la suite
+                else {
+                    Toast.makeText(this, "Oh non c'est pas bon, la bonne reponse etait : " + response, Toast.LENGTH_SHORT).show();
+                    WrongMediaPlayer.start();
+                }
+                // Changement du text du button valider en "prochaine question"
+                Q.answered = true;
+                submitChoiceButtton.setText("Prochaine question !");
             }
-            // sinon mauvaise reponse / afficher faux et passer a la suite
-            else {
-                Toast.makeText(this, "Oh non c'est pas bon, la bonne reponse etait : " + response, Toast.LENGTH_SHORT).show();
-                WrongMediaPlayer.start();
-            }
-            // Changement du text du button valider en "prochaine question"
-            Q.answered = true;
-            submitChoiceButtton.setText("Prochaine question !");
 
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
-            if (numberClickButton > 1) {
-                if (questionIndex + 1 <= questionList.size()) {
-//                    questionNumberTextView.setText("Question " + indexText++ + "/4");
+
+                if (questionIndex + 1 < questionList.size()) {
                     // Encore des questions -> aller à la suivante
                     Intent intent = new Intent(this, QuestionsActivity.class);
                     intent.putParcelableArrayListExtra("questions", questionList);
                     intent.putExtra("questionindex", questionIndex + 1);
-                    intent.putExtra("scoree", scoreText);
+                    intent.putExtra("scoretext", scoreText);
                     startActivity(intent);
                     finish();
                 } else {
@@ -206,14 +208,12 @@ public class QuestionsActivity extends AppCompatActivity {
                     Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
 
                     // rediriger vers les stats de la partie ici
-                    Intent intent = new Intent(this, StatsActivity.class);
-                    int scoresrc = scoreText;
-                    intent.putExtra("difficultyText", selectedDif);
-                    intent.putExtra("scoree", scoresrc);
-                    startActivity(intent);
+                    Intent intentStats = new Intent(this, StatsActivity.class);
+                    intentStats.putExtra("scoretext", scoreText);
+                    startActivity(intentStats);
                     finish();
                 }
-            }
+
         });
 
 
