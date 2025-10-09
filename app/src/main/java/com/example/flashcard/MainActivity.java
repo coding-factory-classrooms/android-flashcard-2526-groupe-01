@@ -17,7 +17,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -78,9 +77,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Intent intent = new Intent(this, QuestionsActivity.class);
                         intent.putExtra("selecteddif", selectedDif);
                         intent.putExtra("d_logo", setDifficultyLogo(selectedDif));
+                        intent.putExtra("d_raw", setDifficultyRaw(selectedDif));
                         questionsInitialization(selectedDif, intent);
                         startActivity(intent);
                         dialog.dismiss();
+
                     });
             AlertDialog dialog = difficultyChoiceDialog.create();
             dialog.show();
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.statButton) {
 
             // go to statActivity - Here is the logic for the transition to the stat page
-            Intent intent = new Intent(this, StatActivity.class);
+            Intent intent = new Intent(this, StatsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.aboutButton) {
@@ -139,6 +140,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             d_logo = R.drawable.d_hardcore;
         }
         return d_logo;
+    }
+
+    private int setDifficultyRaw(int selectedDif) {
+        int d_raw = 0;
+        if (selectedDif == 0) {
+            d_raw = R.raw.e_ee_bb;
+        } else if (selectedDif == 1) {
+            d_raw = R.raw.m_ee_bb;
+        } else if (selectedDif == 2) {
+            d_raw = R.raw.h_ee_bb;
+        } else if (selectedDif == 3) {
+            d_raw = R.raw.hc_ee_bb;
+        }
+        return d_raw;
     }
 
     public void questionsInitialization(int selectedDif, Intent intent) {

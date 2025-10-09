@@ -46,58 +46,59 @@
         android:id="@+id/questionNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question 1/4"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
         app:layout_constraintStart_toStartOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        tools:text="Question 1/4" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar2" />
 
-
-    <ImageView
-        android:id="@+id/flagImageView"
-        android:layout_width="379dp"
-        android:layout_height="321dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:srcCompat="@android:drawable/editbox_dropdown_light_frame" />
-
-    <ImageView
-        android:id="@+id/difficultyImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="13dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintStart_toStartOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        tools:srcCompat="@drawable/d_easy" />
 
     <RadioGroup
         android:id="@+id/radio_group"
-        android:layout_width="314dp"
-        android:layout_height="201dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="316dp"
+        android:layout_height="216dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flagImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/button_image" />
 
     <Button
         android:id="@+id/submitChoiceButtton"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="228dp"
         android:text="Valider"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group" />
+        app:layout_constraintTop_toTopOf="@+id/radio_group" />
+
+    <ImageButton
+        android:id="@+id/difficultyImageButton"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="13dp"
+        android:background="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintStart_toStartOf="@+id/toolbar2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/d_easy" />
+
+    <ImageButton
+        android:id="@+id/button_image"
+        android:layout_width="366dp"
+        android:layout_height="223dp"
+        android:layout_marginTop="88dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:srcCompat="@drawable/apptitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

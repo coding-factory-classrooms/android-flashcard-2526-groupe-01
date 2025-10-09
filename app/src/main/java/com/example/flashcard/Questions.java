@@ -12,7 +12,6 @@ public class Questions implements Parcelable {
     public List<String> answers;
     public int correctAnswerPosition;
     public int flag;
-
     public boolean answered;
 
     public Questions(String question, List<String> answers, int correctAnswerPosition, int flag, boolean answered) {
