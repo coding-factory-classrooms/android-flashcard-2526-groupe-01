@@ -218,6 +218,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
         ImageButton button_image = findViewById(R.id.button_image);
+        button_image.setImageResource(Q.flag);
         button_image.setOnClickListener( view -> {
             WrongMediaPlayer.start();
         });
