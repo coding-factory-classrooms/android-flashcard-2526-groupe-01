@@ -60,7 +60,13 @@ public class QuestionsActivity extends AppCompatActivity {
         int d_raw = srcIntent.getIntExtra("d_raw", R.raw.e_ee_bb);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
+        Questions Q = questionList.get(questionIndex);
+
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
+        TextView questionTextView = findViewById(R.id.questionTextView);
+        questionTextView.setText(Q.question);
+        TextView feedbackTextView = findViewById(R.id.feedbackTextView);
+
         ImageButton difficultyImageView = findViewById(R.id.button_image);
         difficultyImageView.setImageResource(d_logo);
         questionNumberTextView.setText("Question " + (questionIndex +1) + "/4");
@@ -70,16 +76,10 @@ public class QuestionsActivity extends AppCompatActivity {
         difficultyImageButton.setOnClickListener(view -> blopyBlopaEasterEggs.start());
 
 
-        Questions Q = questionList.get(questionIndex);
         String correctAnswer = Q.answers.get(Q.correctAnswerPosition - 1);
 
         Collections.shuffle(Q.answers);
 
-        // À mettre dans la boucle for en dessous (je crois :D)
-//        String answerI = Q.answers.get(0);
-//        String answerII = Q.answers.get(1);
-//        String answerIII = Q.answers.get(2);
-//        String answerIV = Q.answers.get(3);
         Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
         RadioGroup group = findViewById(R.id.radio_group);
         group.setPadding(10,10,10,10);
@@ -136,37 +136,13 @@ public class QuestionsActivity extends AppCompatActivity {
             });
         }
 
-//        for (int i = 0; i < Q.answers.size(); i++) {
-//            // Instancier un RadioButton
-//
-//            int id = View.generateViewId();
-//
-//            // ajouter ce rb a ton radiogroup
-//        }
-
-        // À mettre dans la boucle for aussi (je crois :D)
-//        Button oneRadioButton = findViewById(R.id.oneRadioButton);
-//        oneRadioButton.setText(answerI);
-//        Button twoRadioButton = findViewById(R.id.twoRadioButton);
-//        twoRadioButton.setText(answerII);
-//        Button threeRadioButton = findViewById(R.id.threeRadioButton);
-//        threeRadioButton.setText(answerIII);
-//        Button fourRadioButton = findViewById(R.id.fourRadioButton);
-//        fourRadioButton.setText(answerIV);
-//
-//        // On assigne un tag à chaque bouton
-//        oneRadioButton.setTag(1);
-//        twoRadioButton.setTag(2);
-//        threeRadioButton.setTag(3);
-//        fourRadioButton.setTag(4);
-
         // Recupere la bonne reponse
         int response = Q.correctAnswerPosition;
 
         Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
         submitChoiceButtton.setOnClickListener(view -> {
 
-           numberClickButton++;
+            numberClickButton++;
 
             // Recuperer le choix de l'utilisateur
             RadioGroup radioGroup = findViewById(R.id.radio_group);
@@ -176,15 +152,21 @@ public class QuestionsActivity extends AppCompatActivity {
 
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
+            radioGroup.setVisibility(View.GONE);
             if (response == responseUser){
+
                 scoreText++;
-                Toast.makeText(this, "Bravo bonne reponse", Toast.LENGTH_SHORT).show();
-                CorrectMediaPlayer.start();
+                feedbackTextView.setText("Bravo ! Bonne réponse !");
+                if (numberClickButton <= 1) {
+                    CorrectMediaPlayer.start();
+                }
             }
             // sinon mauvaise reponse / afficher faux et passer a la suite
             else {
-                Toast.makeText(this, "Oh non c'est pas bon, la bonne reponse etait : " + response, Toast.LENGTH_SHORT).show();
-                WrongMediaPlayer.start();
+                feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
+                if (numberClickButton <= 1) {
+                    WrongMediaPlayer.start();
+                }
             }
             // Changement du text du button valider en "prochaine question"
             Q.answered = true;

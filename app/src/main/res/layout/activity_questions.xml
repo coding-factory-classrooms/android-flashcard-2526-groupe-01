@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".QuestionsActivity">
 
+    <TextView
+        android:id="@+id/feedbackTextView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/submitChoiceButtton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group"
+        tools:text="The feedback is here" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="0dp"
@@ -60,8 +73,8 @@
         android:layout_width="316dp"
         android:layout_height="216dp"
         android:layout_marginTop="20dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_image" />
 
@@ -69,13 +82,13 @@
         android:id="@+id/submitChoiceButtton"
         android:layout_width="260dp"
         android:layout_height="50dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginBottom="32dp"
         android:text="Valider"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/radio_group" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/difficultyImageButton"
@@ -94,11 +107,26 @@
         android:id="@+id/button_image"
         android:layout_width="366dp"
         android:layout_height="223dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="32dp"
+        android:background="#00FFFFFF"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView"
+        app:srcCompat="@drawable/apptitle"
+        tools:srcCompat="@drawable/apptitle" />
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:srcCompat="@drawable/apptitle" />
+        tools:text="The question is here" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
