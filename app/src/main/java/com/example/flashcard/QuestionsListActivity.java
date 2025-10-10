@@ -35,7 +35,7 @@ public class QuestionsListActivity extends AppCompatActivity implements Question
 
     private static final String TAG = "QuestionsListActivity";
 
-    private static final String JSON_URL = "https://raw.githubusercontent.com/coding-factory-classrooms/android-flashcard-2526-groupe-01/refs/heads/feature/api/app/src/main/assets/question.json";
+    private static final String JSON_URL = "https://raw.githubusercontent.com/coding-factory-classrooms/android-flashcard-2526-groupe-01/refs/heads/main/app/src/main/assets/question.json";
 
     private RecyclerView recyclerView;
     private  QuestionsListAdapter adapter;
