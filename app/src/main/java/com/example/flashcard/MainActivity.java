@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Questions for the easy difficulty
             List<String> answers1 = new ArrayList<>();
-            answers1.add("Brasil");
+            answers1.add("Brésil");
             answers1.add("Chine");
             answers1.add("France");
             answers1.add("Allemagne");
