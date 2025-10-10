@@ -67,7 +67,7 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
         wrongAnswersList = getIntent().getParcelableArrayListExtra("wrongAnswersList");
         if (wrongAnswersList == null || wrongAnswersList.isEmpty()) {
             Toast.makeText(this, "Aucune question à afficher. Retour au menu.", Toast.LENGTH_LONG).show();
-            finish(); // quitte l’activité proprement
+            finish();
             return;
         }
 
@@ -81,7 +81,6 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
 
         ImageButton difficultyImageView = findViewById(R.id.button_image);
         difficultyImageView.setImageResource(d_logo);
-        Log.d("TRAINING", "questionIndex = " + questionIndex + " / taille = " + wrongAnswersList.size());
         questionNumberTextView.setText("Question " + (questionIndex +1) + " / " + wrongAnswersList.size());
         ImageButton difficultyImageButton = findViewById(R.id.difficultyImageButton);
         difficultyImageButton.setImageResource(d_logo);
@@ -161,9 +160,14 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
         numberClickButton++;
 
         // Recuperer le choix de l'utilisateur
+
+        // recuperer le group de RadioButton
         RadioGroup radioGroup = findViewById(R.id.radio_group);
+        // recuprer le id du button
         int checkedId = radioGroup.getCheckedRadioButtonId();
+        // recupere le button selectionner
         RadioButton selectionButton = findViewById(checkedId);
+        // lis la valeur du tag du button
         int responseUser = (Integer)selectionButton.getTag();
 
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
@@ -182,6 +186,14 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
                     WrongMediaPlayer.start();
                 }
             }
+
+            if (questionIndex + 1 == wrongAnswersList.size()) {
+                // Changement du texte du button valider en "terminer le quizz"
+                submitChoiceButtton.setText("Terminer le quizz !");
+            } else {
+                // Changement du texte du button valider en "prochaine question"
+                submitChoiceButtton.setText("Prochaine question !");
+            }
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
                 if (questionIndex + 1 < wrongAnswersList.size()) {
@@ -192,8 +204,6 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    // Changement du text du button valider en "prochaine question"
-                    submitChoiceButtton.setText("Prochaine question !");
                     // Plus de questions -> fin du quiz
                     Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
 

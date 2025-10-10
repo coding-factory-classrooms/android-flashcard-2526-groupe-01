@@ -187,9 +187,14 @@ public class QuestionsActivity extends AppCompatActivity {
                     WrongMediaPlayer.start();
                 }
             }
-            // Changement du text du button valider en "prochaine question"
-            submitChoiceButtton.setText("Prochaine question !");
 
+            if (questionIndex + 1 == questionList.size()) {
+                // Changement du texte du button valider en "terminer le quizz"
+                submitChoiceButtton.setText("Terminer le quizz !");
+            } else {
+                // Changement du texte du button valider en "prochaine question"
+                submitChoiceButtton.setText("Prochaine question !");
+            }
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
                 if (response == responseUser) {
