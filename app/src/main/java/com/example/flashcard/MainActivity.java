@@ -95,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (id == R.id.statButton) {
 
+            AlertDialog.Builder difficultyChoiceDialog = new AlertDialog.Builder(this);
+            difficultyChoiceDialog
+                    .setTitle("Work In Progress (Maybe)");
+            AlertDialog dialog = difficultyChoiceDialog.create();
+            dialog.show();
             // go to statActivity - Here is the logic for the transition to the stat page
 //            Intent intent = new Intent(this, StatsActivity.class);
 //            startActivity(intent);
@@ -102,20 +107,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.aboutButton) {
 
             // go to aboutActivity
+            String[] creators = {"Draxan LT", "Matias D", "Strauss A", "Romain P"};
             Intent intent = new Intent(this, AboutActivity.class);
             intent
                     .putExtra("apptitle", appTitle)
                     .putExtra("apptitletext", "Guess the flag")
-                    .putExtra("creatorI", "Draxan LT")
-                    .putExtra("creatorII", "Matias D")
-                    .putExtra("creatorIII", "Strauss A")
-                    .putExtra("creatorIV", "Romain P")
+                    .putExtra("creators", creators)
                     .putExtra("group", "01")
                     .putExtra("version", getAppVersion());
             startActivity(intent);
         }
     }
 
+    // Gets the app version dynamically
     private String getAppVersion(){
         String version = "";
         try {
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return version;
     }
 
+    // Sets the difficulty logo for the difficulty
     private int setDifficultyLogo(int selectedDif) {
         int d_logo = 0;
         if (selectedDif == 0) {
@@ -142,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return d_logo;
     }
 
+    // Sets the audio file for the easterEgg
     private int setDifficultyRaw(int selectedDif) {
         int d_raw = 0;
         if (selectedDif == 0) {
@@ -163,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Questions for the easy difficulty
             List<String> answers1 = new ArrayList<>();
-            answers1.add("Brasil");
+            answers1.add("Brésil");
             answers1.add("Chine");
             answers1.add("France");
             answers1.add("Allemagne");

@@ -1,5 +1,6 @@
 package com.example.flashcard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -30,7 +31,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 // Activity that show the list of the questions
-public class QuestionsListActivity extends AppCompatActivity {
+public class QuestionsListActivity extends AppCompatActivity implements QuestionsListAdapter.OnQuestionClickListener {
 
     private static final String TAG = "QuestionsListActivity";
 
@@ -62,7 +63,7 @@ public class QuestionsListActivity extends AppCompatActivity {
         allQuestions = getAllQuestions();
 
         // Create and configure the Adapter
-        adapter = new QuestionsListAdapter(allQuestions);
+        adapter = new QuestionsListAdapter(allQuestions, this);
         recyclerView.setAdapter(adapter);
 
         loadQuestionsFromApi();
@@ -389,5 +390,14 @@ public class QuestionsListActivity extends AppCompatActivity {
         questions.add(Q3);
         questions.add(Q4);
         return questions;
+    }
+
+    @Override
+    public void onQuestionClick(Questions questions, int position) {
+        Intent intent = new Intent(this, QuestionsActivity.class);
+        ArrayList<Questions> list = new ArrayList<>();
+        list.add(questions);
+        intent.putParcelableArrayListExtra("questions", list);
+        startActivity(intent);
     }
 }
