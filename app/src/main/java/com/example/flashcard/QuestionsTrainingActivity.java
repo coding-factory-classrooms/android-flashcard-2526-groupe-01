@@ -159,35 +159,32 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
 
         submitChoiceButtton.setOnClickListener(view -> {
 
-            numberClickButton++;
+        numberClickButton++;
 
-            // Recuperer le choix de l'utilisateur
-            RadioGroup radioGroup = findViewById(R.id.radio_group);
-            int checkedId = radioGroup.getCheckedRadioButtonId();
-            RadioButton selectionButton = findViewById(checkedId);
-            int responseUser = (Integer)selectionButton.getTag();
+        // Recuperer le choix de l'utilisateur
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
+        int checkedId = radioGroup.getCheckedRadioButtonId();
+        RadioButton selectionButton = findViewById(checkedId);
+        int responseUser = (Integer)selectionButton.getTag();
 
-            if (!F.answered) {
-                // si le choix de l'utilisateur et de la bonne reponse sont le meme
-                // l'utilisateur a trouver passer a la 2eme question
-                radioGroup.setVisibility(View.VISIBLE);
-                if (response == responseUser) {
-                    feedbackTextView.setText("Bravo ! Bonne réponse !");
-                    if (numberClickButton <= 1) {
-                        CorrectMediaPlayer.start();
-                    }
+            // si le choix de l'utilisateur et de la bonne reponse sont le meme
+            // l'utilisateur a trouver passer a la 2eme question
+            radioGroup.setVisibility(View.VISIBLE);
+            if (response == responseUser) {
+                feedbackTextView.setText("Bravo ! Bonne réponse !");
+                if (numberClickButton <= 1) {
+                    CorrectMediaPlayer.start();
                 }
-                // sinon mauvaise reponse / afficher faux et passer a la suite
-                else {
-                    feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
-                    if (numberClickButton <= 1) {
-                        WrongMediaPlayer.start();
-                    }
-                }
-                // Changement du text du button valider en "prochaine question"
-                F.answered = true;
-                submitChoiceButtton.setText("Prochaine question !");
             }
+            // sinon mauvaise reponse / afficher faux et passer a la suite
+            else {
+                feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
+                if (numberClickButton <= 1) {
+                    WrongMediaPlayer.start();
+                }
+            }
+            // Changement du text du button valider en "prochaine question"
+            submitChoiceButtton.setText("Prochaine question !");
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
                 if (questionIndex + 1 < wrongAnswersList.size()) {

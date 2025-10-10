@@ -157,43 +157,41 @@ public class QuestionsActivity extends AppCompatActivity {
 
         submitChoiceButtton.setOnClickListener(view -> {
 
-            numberClickButton++;
+        numberClickButton++;
 
-            // Recuperer le choix de l'utilisateur
+        // Recuperer le choix de l'utilisateur
 
-            // recuperer le group de RadioButton
-            RadioGroup radioGroup = findViewById(R.id.radio_group);
-            // recuprer le id du button
-            int checkedId = radioGroup.getCheckedRadioButtonId();
-            // recupere le button selectionner
-            RadioButton selectionButton = findViewById(checkedId);
-            // lis la valeur du tag du button
-            int responseUser = (Integer)selectionButton.getTag();
+        // recuperer le group de RadioButton
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
+        // recuprer le id du button
+        int checkedId = radioGroup.getCheckedRadioButtonId();
+        // recupere le button selectionner
+        RadioButton selectionButton = findViewById(checkedId);
+        // lis la valeur du tag du button
+        int responseUser = (Integer)selectionButton.getTag();
 
 
-            if (!Q.answered) {
-                // si le choix de l'utilisateur et de la bonne reponse sont le meme
-                // l'utilisateur a trouver passer a la 2eme question
-                radioGroup.setVisibility(View.VISIBLE);
-                if (response == responseUser) {
-                    scoreText++;
-                    feedbackTextView.setText("Bravo ! Bonne réponse !");
-                    if (numberClickButton <= 1) {
-                        CorrectMediaPlayer.start();
-                    }
+            // si le choix de l'utilisateur et de la bonne reponse sont le meme
+            // l'utilisateur a trouver passer a la 2eme question
+            radioGroup.setVisibility(View.VISIBLE);
+            if (response == responseUser) {
+                scoreText++;
+                feedbackTextView.setText("Bravo ! Bonne réponse !");
+                if (numberClickButton <= 1) {
+                    CorrectMediaPlayer.start();
                 }
-                // sinon mauvaise reponse / afficher faux et passer a la suite
-                else {
-                    wrongAnswersList.add(Q);
-                    feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
-                    if (numberClickButton <= 1) {
-                        WrongMediaPlayer.start();
-                    }
-                }
-                // Changement du text du button valider en "prochaine question"
-                Q.answered = true;
-                submitChoiceButtton.setText("Prochaine question !");
             }
+            // sinon mauvaise reponse / afficher faux et passer a la suite
+            else {
+                wrongAnswersList.add(Q);
+                feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
+                if (numberClickButton <= 1) {
+                    WrongMediaPlayer.start();
+                }
+            }
+            // Changement du text du button valider en "prochaine question"
+            submitChoiceButtton.setText("Prochaine question !");
+
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
                 if (questionIndex + 1 < questionList.size()) {
@@ -219,7 +217,6 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
             }
         });
-
 
         ImageButton button_image = findViewById(R.id.button_image);
         button_image.setImageResource(Q.flag);

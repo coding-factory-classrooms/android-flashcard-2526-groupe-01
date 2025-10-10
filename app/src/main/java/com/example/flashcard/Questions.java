@@ -12,14 +12,17 @@ public class Questions implements Parcelable {
     public List<String> answers;
     public int correctAnswerPosition;
     public int flag;
-    public boolean answered;
+    public int raw;
 
-    public Questions(String question, List<String> answers, int correctAnswerPosition, int flag, boolean answered) {
+    public String difficulty;
+
+    public Questions(String question, List<String> answers, int correctAnswerPosition, int flag, int raw, String difficulty) {
         this.question = question;
         this.answers = answers;
         this.correctAnswerPosition = correctAnswerPosition;
         this.flag = flag;
-        this.answered = answered;
+        this.raw = raw;
+        this.difficulty = difficulty;
     }
 
     protected Questions(Parcel in) {
@@ -27,7 +30,8 @@ public class Questions implements Parcelable {
         answers = in.createStringArrayList();
         correctAnswerPosition = in.readInt();
         flag = in.readInt();
-        answered = in.readByte() != 0;
+        raw = in.readInt();
+        difficulty = in.readString();
     }
 
     @Override
@@ -36,7 +40,8 @@ public class Questions implements Parcelable {
         dest.writeStringList(answers);
         dest.writeInt(correctAnswerPosition);
         dest.writeInt(flag);
-        dest.writeByte((byte) (answered ? 1 : 0));
+        dest.writeInt(raw);
+        dest.writeString(difficulty);
     }
 
     @Override
@@ -88,11 +93,21 @@ public class Questions implements Parcelable {
         this.flag = flag;
     }
 
-    public boolean isAnswered() {
-        return answered;
+    public int getRaw() {
+        return raw;
     }
 
-    public void setAnswered(boolean answered) {
-        this.answered = answered;
+    public void setRaw(int raw) {
+        this.raw = raw;
     }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+
 }
