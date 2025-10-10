@@ -31,6 +31,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private MediaPlayer CorrectMediaPlayer;
     private MediaPlayer WrongMediaPlayer;
 
+    private int clickCount = 0;
     private MediaPlayer BresilPlayer;
     private MediaPlayer ItaliePlayer;
     private MediaPlayer EspagnePlayer;
@@ -100,9 +101,8 @@ public class QuestionsActivity extends AppCompatActivity {
     // création d'un button pour chaque reponse
         for (int i = 0; i < Q.answers.size(); i++) {
 
-            // 1️⃣ Création du RadioButton
+            // 1️ Création du RadioButton
             RadioButton radioButton = new RadioButton(this);
-
 
             GradientDrawable drawable = new GradientDrawable();
             drawable.setCornerRadius(30);
@@ -160,10 +160,16 @@ public class QuestionsActivity extends AppCompatActivity {
             numberClickButton++;
 
             // Recuperer le choix de l'utilisateur
+
+            // recuperer le group de RadioButton
             RadioGroup radioGroup = findViewById(R.id.radio_group);
+            // recuprer le id du button
             int checkedId = radioGroup.getCheckedRadioButtonId();
+            // recupere le button selectionner
             RadioButton selectionButton = findViewById(checkedId);
+            // lis la valeur du tag du button
             int responseUser = (Integer)selectionButton.getTag();
+
 
             if (!Q.answered) {
                 // si le choix de l'utilisateur et de la bonne reponse sont le meme
@@ -218,7 +224,11 @@ public class QuestionsActivity extends AppCompatActivity {
         ImageButton button_image = findViewById(R.id.button_image);
         button_image.setImageResource(Q.flag);
         button_image.setOnClickListener( view -> {
-
+                clickCount++;
+                if (clickCount == 5) {
+                    clickCount = 0;
+                    Inde.start();
+                }
         });
     }
 }
