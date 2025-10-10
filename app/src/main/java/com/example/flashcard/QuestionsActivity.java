@@ -25,20 +25,25 @@ import java.util.Collections;
 
 public class QuestionsActivity extends AppCompatActivity {
 
-    // Variable  du nombre de click pour le button Valider
+    // Variable number of click for next steps
     int numberClickButton = 0;
+    // Music Variable
     private MediaPlayer blopyBlopaEasterEggs;
     private MediaPlayer CorrectMediaPlayer;
     private MediaPlayer WrongMediaPlayer;
-
-    private int clickCount = 0;
     private MediaPlayer BresilPlayer;
     private MediaPlayer ItaliePlayer;
     private MediaPlayer EspagnePlayer;
     private MediaPlayer Inde;
+
+    // Variable for EasterEGG
+    private int clickCount = 0;
+
+    // ArrayList
     ArrayList<Questions> questionList;
     ArrayList<Questions> wrongAnswersList;
 
+    // Score Text
     int scoreText;
 
     @Override
@@ -52,17 +57,22 @@ public class QuestionsActivity extends AppCompatActivity {
             return insets;
         });
 
+
+        // Button for surbmit choice On quiz
         Button submitChoiceButtton = findViewById(R.id.submitChoiceButtton);
+        // Set visibility hidden
         submitChoiceButtton.setVisibility(View.GONE);
-        // Ajouter le son Bonne reponse
+
+        // Initialise SOUND
         this.CorrectMediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.duolingo_correct);
-        // Ajouter le son mauvaise reponse
         this.WrongMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_buzzer);
         this.BresilPlayer = MediaPlayer.create(getApplicationContext(), R.raw.flag_e_brazil);
         this.EspagnePlayer = MediaPlayer.create(getApplicationContext(), R.raw.flag_e_spain);
         this.ItaliePlayer = MediaPlayer.create(getApplicationContext(), R.raw.italie);
         this.Inde = MediaPlayer.create(getApplicationContext(), R.raw.inde);
 
+
+        // Source for take Questions
         Intent srcIntent = getIntent();
         int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
@@ -71,116 +81,137 @@ public class QuestionsActivity extends AppCompatActivity {
         scoreText = getIntent().getIntExtra("scoretext", 0);
         questionList = srcIntent.getParcelableArrayListExtra("questions");
         wrongAnswersList = getIntent().getParcelableArrayListExtra("wrongAnswersList");
+
+        // idk
         if (wrongAnswersList == null) {
             wrongAnswersList = new ArrayList<>();
         }
-        Questions Q = questionList.get(questionIndex);
 
+        // GET index question on questionList
+        Questions Q = questionList.get(questionIndex);
+        // GET Number text View
         TextView questionNumberTextView = findViewById(R.id.questionNumberTextView);
+        // Get question text view
         TextView questionTextView = findViewById(R.id.questionTextView);
+        // set text question to text View
         questionTextView.setText(Q.question);
+        // idk
         TextView feedbackTextView = findViewById(R.id.feedbackTextView);
 
+
+        // set difficultuImageView for button img
         ImageButton difficultyImageView = findViewById(R.id.button_image);
+        // set img for the button image
         difficultyImageView.setImageResource(d_logo);
+        // set text for de question on quiz
         questionNumberTextView.setText("Question " + (questionIndex +1) + "/4");
+        // GET difficultyImage Button
         ImageButton difficultyImageButton = findViewById(R.id.difficultyImageButton);
         difficultyImageButton.setImageResource(d_logo);
+        // initialise Media Player for play sound on click
         this.blopyBlopaEasterEggs = MediaPlayer.create(getApplicationContext(),d_raw);
         difficultyImageButton.setOnClickListener(view -> blopyBlopaEasterEggs.start());
 
-
-        // Questions Q = questionList.get(questionIndex);
+        // Get CorrectAnswer width the position
         String correctAnswer = Q.answers.get(Q.correctAnswerPosition - 1);
-
+        // shuffle que answers
         Collections.shuffle(Q.answers);
 
+        // set the CorrectAnswerPosition to de aswers indexOF
         Q.correctAnswerPosition = Q.answers.indexOf(correctAnswer) + 1;
+
+        // GET RAdio Group
         RadioGroup group = findViewById(R.id.radio_group);
+        // set Padding to the radio Group
         group.setPadding(10,10,10,10);
-    // création d'un button pour chaque reponse
+
+
+
+        // Boucle FOR create RadioButton
         for (int i = 0; i < Q.answers.size(); i++) {
 
-            // 1️ Création du RadioButton
+            // 1️ Create radioButton
             RadioButton radioButton = new RadioButton(this);
-
+            // 2 give drawable to the radioButton for get new properties
             GradientDrawable drawable = new GradientDrawable();
             drawable.setCornerRadius(30);
             drawable.setColor(Color.parseColor("#7D4FFE"));
             radioButton.setBackground(drawable);
             radioButton.setPadding(30, 20, 30, 20);
 
-            // Layout : largeur pleine et les marge
+            // 3. SET Layout : maw width and marges
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
             params.setMargins(0, 10, 0, 10);
+            // PUT params to radio button
             radioButton.setLayoutParams(params);
 
-            // Texte
+            // SET TEXT to radio button (answers)
             radioButton.setText(Q.answers.get(i));
+            // SET TAG for find the position of the radio button
             radioButton.setTag(i + 1);
             radioButton.setTextColor(Color.WHITE);
             radioButton.setTextSize(20);
+            // add radioButton to the radioGroup
             group.addView(radioButton);
 
-            // Listener pour gérer la sélection
+            // Listener onClick for the radioButton
             radioButton.setOnClickListener(view -> {
-                for (int j = 0; j < group.getChildCount(); j++) {
-                    View c = group.getChildAt(j);
-                    if (c instanceof RadioButton) {
-                        RadioButton r = (RadioButton) c;
 
+                // boucle for take all child on the radio Group
+                for (int j = 0; j < group.getChildCount(); j++) {
+                    // Chaque child is a View
+                    View c = group.getChildAt(j);
+                    // caste button for edit
+                    RadioButton r = (RadioButton) c;
                         // Chaque bouton a son drawable unique
-                        //evite que les buttons change tous de couleur en meme temps
                         GradientDrawable bg = new GradientDrawable();
                         bg.setCornerRadius(30);
-
+                        // if radio button is checked
                         if (r.isChecked()) {
+                            // change bg color and text color
                             bg.setColor(Color.parseColor("#C49FFF"));
                             r.setTextColor(Color.WHITE);
                         } else {
+                            // else set this color and Put button VISIBLE
                             bg.setColor(Color.parseColor("#7D4FFE"));
                             r.setTextColor(Color.WHITE);
                             submitChoiceButtton.setVisibility(View.VISIBLE);
                         }
                         r.setBackground(bg);
-                    }
                 }
             });
         }
 
-        // Recupere la bonne reponse
+        // Get the Good answersPosition
         int response = Q.correctAnswerPosition;
-
-
+        // Lister on button Valider
         submitChoiceButtton.setOnClickListener(view -> {
 
         numberClickButton++;
-
-        // Recuperer le choix de l'utilisateur
-
-        // recuperer le group de RadioButton
+        // get group
         RadioGroup radioGroup = findViewById(R.id.radio_group);
-        // recuprer le id du button
+        // get id on radioButton
         int checkedId = radioGroup.getCheckedRadioButtonId();
-        // recupere le button selectionner
+        // recupere get the checked Button width id ^
         RadioButton selectionButton = findViewById(checkedId);
-        // lis la valeur du tag du button
+        // get tag of this button for if after
         int responseUser = (Integer)selectionButton.getTag();
 
 
-            // si le choix de l'utilisateur et de la bonne reponse sont le meme
-            // l'utilisateur a trouver passer a la 2eme question
+          // gone the radioGroup
             radioGroup.setVisibility(View.GONE);
+            // if Good answerPosition = tag Checked ( 1, 1)
             if (response == responseUser) {
                 feedbackTextView.setText("Bravo ! Bonne réponse !");
+                // play sound Correct
                 if (numberClickButton <= 1) {
                     CorrectMediaPlayer.start();
                 }
             }
-            // sinon mauvaise reponse / afficher faux et passer a la suite
+            // else say its not good
             else {
                 feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
                 if (numberClickButton <= 1) {
@@ -195,7 +226,8 @@ public class QuestionsActivity extends AppCompatActivity {
                 // Changement du texte du button valider en "prochaine question"
                 submitChoiceButtton.setText("Prochaine question !");
             }
-            // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
+
+
             if (numberClickButton > 1) {
                 if (response == responseUser) {
                     scoreText++;
@@ -237,8 +269,9 @@ public class QuestionsActivity extends AppCompatActivity {
         button_image.setImageResource(Q.flag);
         button_image.setOnClickListener( view -> {
 
-            // recuperer quel drapeau si c'est = au flag bresil alors jouer le son bresil etc...
+            // get FLAG and current flag question
             if (Q.flag == R.drawable.flag_e_brazil) {
+                // if == play sound
                 BresilPlayer.start();
             } else if (Q.flag == R.drawable.flag_e_spain) {
                 EspagnePlayer.start();
@@ -247,7 +280,7 @@ public class QuestionsActivity extends AppCompatActivity {
             } else if (Q.flag == R.drawable.flag_e_nigeria) {
                 Inde.start();
             }
-            // si clique 5 fois sur Img jouer Inde
+            // if click 5 times on button_image play sound
                 clickCount++;
                 if (clickCount == 5) {
                     clickCount = 0;
