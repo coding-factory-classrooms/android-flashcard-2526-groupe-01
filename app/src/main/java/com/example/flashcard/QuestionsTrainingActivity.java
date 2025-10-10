@@ -61,7 +61,6 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
         this.Inde = MediaPlayer.create(getApplicationContext(), R.raw.inde);
 
         Intent srcIntent = getIntent();
-        int selectedDif = srcIntent.getIntExtra("selecteddif", 0);
         int d_logo = srcIntent.getIntExtra("d_logo", R.drawable.d_easy);
         int d_raw = srcIntent.getIntExtra("d_raw", R.raw.e_ee_bb);
         int questionIndex = srcIntent.getIntExtra("questionindex", 0);
