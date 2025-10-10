@@ -24,16 +24,15 @@ public class AboutActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Getting informations coming from MainActivity
         Intent srcIntent = getIntent();
         int appTitle = srcIntent.getIntExtra("apptitle", R.drawable.apptitle);
         String appTitleText = srcIntent.getStringExtra("apptitletext");
-        String creatorI = srcIntent.getStringExtra("creatorI");
-        String creatorII = srcIntent.getStringExtra("creatorII");
-        String creatorIII = srcIntent.getStringExtra("creatorIII");
-        String creatorIV = srcIntent.getStringExtra("creatorIV");
+        String[] creators = srcIntent.getStringArrayExtra("creators");
         String group = srcIntent.getStringExtra("group");
         String version = srcIntent.getStringExtra("version");
 
+        // Setting important informations for the UI
         ImageView titleImageView = findViewById(R.id.titleImageView);
         TextView titleTextView = findViewById(R.id.titleTextView);
         TextView creatorsTextView = findViewById(R.id.creatorsTextView);
@@ -41,12 +40,12 @@ public class AboutActivity extends AppCompatActivity {
         TextView versionTextView = findViewById(R.id.versionTextView);
         titleImageView.setImageResource(appTitle);
         titleTextView.setText(appTitleText);
-        creatorsTextView.setText("Creators : " +
-                creatorI + ", " +
-                creatorII + ", " +
-                creatorIII + ", " +
-                creatorIV);
-        groupTextView.setText("Group : " + group);
+        creatorsTextView.setText("Créateurs : " +
+                creators[0] + ", " +
+                creators[1] + ", " +
+                creators[2] + ", " +
+                creators[3]);
+        groupTextView.setText("Groupe : " + group);
         versionTextView.setText("Version : " + version);
     }
 }
