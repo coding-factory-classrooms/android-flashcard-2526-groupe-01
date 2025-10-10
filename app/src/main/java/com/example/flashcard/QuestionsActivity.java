@@ -227,6 +227,18 @@ public class QuestionsActivity extends AppCompatActivity {
         ImageButton button_image = findViewById(R.id.button_image);
         button_image.setImageResource(Q.flag);
         button_image.setOnClickListener( view -> {
+
+            // recuperer quel drapeau si c'est = au flag bresil alors jouer le son bresil etc...
+            if (Q.flag == R.drawable.flag_e_brazil) {
+                BresilPlayer.start();
+            } else if (Q.flag == R.drawable.flag_e_spain) {
+                EspagnePlayer.start();
+            } else if (Q.flag == R.drawable.flag_e_italy) {
+                ItaliePlayer.start();
+            } else if (Q.flag == R.drawable.flag_e_nigeria) {
+                Inde.start();
+            }
+            // si clique 5 fois sur Img jouer Inde
                 clickCount++;
                 if (clickCount == 5) {
                     clickCount = 0;
