@@ -35,7 +35,7 @@ public class QuestionsListActivity extends AppCompatActivity implements Question
 
     private static final String TAG = "QuestionsListActivity";
 
-    private static final String JSON_URL = "https://raw.githubusercontent.com/coding-factory-classrooms/android-flashcard-2526-groupe-01/dev/app/src/feature/api/assets/question.json";
+    private static final String JSON_URL = "https://raw.githubusercontent.com/coding-factory-classrooms/android-flashcard-2526-groupe-01/refs/heads/feature/api/app/src/main/assets/question.json";
 
     private RecyclerView recyclerView;
     private  QuestionsListAdapter adapter;
@@ -264,7 +264,7 @@ public class QuestionsListActivity extends AppCompatActivity implements Question
         answers4.add("Ukraine");
         answers4.add("Russie");
 
-        Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_e_brazil, R.raw.duolingo_correct, "easy");
+        Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_e_usa, R.raw.duolingo_correct, "easy");
         Questions Q2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 1, R.drawable.flag_e_nigeria, R.raw.duolingo_correct, "easy");
         Questions Q3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 1, R.drawable.flag_e_spain, R.raw.duolingo_correct, "easy");
         Questions Q4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 1, R.drawable.flag_e_italy, R.raw.duolingo_correct, "easy");

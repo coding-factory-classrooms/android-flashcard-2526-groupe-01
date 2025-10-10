@@ -4,7 +4,7 @@
       "question": "Quel est le pays de ce drapeau ?",
       "answers": ["Brasil", "Chine", "France", "Allemagne"],
       "correctAnswerPosition": 1,
-      "flag": "R.drawable.flag_e_brazil",
+      "flag": "R.drawable.flag_e_japon",
       "raw": "R.raw.flag_e_brazil",
       "difficulty": "easy"
     },
@@ -127,7 +127,7 @@
       "question": "Quel est le territoire français de ce drapeau ?",
       "answers": ["Saint-Pierre-et-Miquelon", "Normandie", "Bretagne", "Pays basque français"],
       "correctAnswerPosition": 1,
-      "flag": "R.vh_saint_pierre_and_miquelon",
+      "flag": "R.drawable.flag_vh_saint_pierre_and_miquelon",
       "raw": "R.raw.duolingo_correct",
       "difficulty": "hardcore"
     }
