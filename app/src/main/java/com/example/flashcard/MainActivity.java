@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // All buttons in the main activity/launch page
     private Button startButton;
-    private Button questionsListDifficultyButton;
+    private Button questionsListButton;
     private Button statButton;
     private Button aboutButton;
 
@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Here is where we're linking our variables "Button" to their equivalents in activity_main.xml
         startButton = findViewById(R.id.startButton);
-        questionsListDifficultyButton = findViewById(R.id.questionsListDifficultyButton);
+        questionsListButton = findViewById(R.id.questionsListButton);
         statButton = findViewById(R.id.statButton);
         aboutButton = findViewById(R.id.aboutButton);
 
         // Heart of the activity
         startButton.setOnClickListener(this);
-        questionsListDifficultyButton.setOnClickListener(this);
+        questionsListButton.setOnClickListener(this);
         statButton.setOnClickListener(this);
         aboutButton.setOnClickListener(this);
     }
@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dialog.show();
 
 
-        } else if (id == R.id.questionsListDifficultyButton) {
+        } else if (id == R.id.questionsListButton) {
 
             // go to questionsListActivity - Here is the logic for the transition to the questions list page
-            Intent intent = new Intent(this, QuestionsListActivityDifficulty.class);
+            Intent intent = new Intent(this, QuestionsListActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.statButton) {
