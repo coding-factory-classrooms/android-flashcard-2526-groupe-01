@@ -41,7 +41,7 @@ public class StatsActivity extends AppCompatActivity {
 
         Button trainingButton = findViewById(R.id.trainingButton);
         Button shareButton = findViewById(R.id.shareButton);
-        Button homeButton = findViewById(R.id.homeButton);
+//        Button homeButton = findViewById(R.id.homeButton);
 
         // Get objects
         Intent srcIntent = getIntent();
@@ -94,10 +94,10 @@ public class StatsActivity extends AppCompatActivity {
         });
 
         // Home redirection when button clicked
-        homeButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+//        homeButton.setOnClickListener(view -> {
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        });
 
     }
 }

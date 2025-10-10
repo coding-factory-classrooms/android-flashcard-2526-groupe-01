@@ -182,8 +182,6 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
                     WrongMediaPlayer.start();
                 }
             }
-            // Changement du text du button valider en "prochaine question"
-            submitChoiceButtton.setText("Prochaine question !");
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
                 if (questionIndex + 1 < wrongAnswersList.size()) {
@@ -194,6 +192,8 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+                    // Changement du text du button valider en "prochaine question"
+                    submitChoiceButtton.setText("Prochaine question !");
                     // Plus de questions -> fin du quiz
                     Toast.makeText(this, " Bravo ! Vous avez terminé le quiz !", Toast.LENGTH_LONG).show();
 

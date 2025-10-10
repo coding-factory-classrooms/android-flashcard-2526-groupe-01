@@ -175,7 +175,6 @@ public class QuestionsActivity extends AppCompatActivity {
             // l'utilisateur a trouver passer a la 2eme question
             radioGroup.setVisibility(View.VISIBLE);
             if (response == responseUser) {
-                scoreText++;
                 feedbackTextView.setText("Bravo ! Bonne réponse !");
                 if (numberClickButton <= 1) {
                     CorrectMediaPlayer.start();
@@ -183,7 +182,6 @@ public class QuestionsActivity extends AppCompatActivity {
             }
             // sinon mauvaise reponse / afficher faux et passer a la suite
             else {
-                wrongAnswersList.add(Q);
                 feedbackTextView.setText("Oh non, c'est pas bon ! La bonne réponse était : " + correctAnswer);
                 if (numberClickButton <= 1) {
                     WrongMediaPlayer.start();
@@ -194,6 +192,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
             // si il appuie 2 fois sur le button il est rediriger vers la 2 eme question
             if (numberClickButton > 1) {
+                if (response == responseUser) {
+                    scoreText++;
+                } else {
+                    wrongAnswersList.add(Q);
+                }
+
                 if (questionIndex + 1 < questionList.size()) {
                     // Encore des questions -> aller à la suivante
                     Intent intent = new Intent(this, QuestionsActivity.class);
