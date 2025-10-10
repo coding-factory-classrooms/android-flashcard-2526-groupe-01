@@ -43,18 +43,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/questionsListToolbar" />
 
-    <ScrollView
-        android:id="@+id/questionsListScrollView"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/questionsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/questionsListFootToolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsListToolbar">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/questionsListToolbar"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_questions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
