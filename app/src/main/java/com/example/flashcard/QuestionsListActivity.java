@@ -95,9 +95,9 @@ public class QuestionsListActivity extends AppCompatActivity {
         answers4.add("Russie");
 
         Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_e_brazil, R.raw.duolingo_correct, "easy");
-        Questions Q2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 3, R.drawable.flag_e_nigeria, R.raw.duolingo_correct, "easy");
+        Questions Q2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 1, R.drawable.flag_e_nigeria, R.raw.duolingo_correct, "easy");
         Questions Q3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 1, R.drawable.flag_e_spain, R.raw.duolingo_correct, "easy");
-        Questions Q4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 2, R.drawable.flag_e_italy, R.raw.duolingo_correct, "easy");
+        Questions Q4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 1, R.drawable.flag_e_italy, R.raw.duolingo_correct, "easy");
 
         questions.add(Q1);
         questions.add(Q2);
@@ -132,10 +132,10 @@ public class QuestionsListActivity extends AppCompatActivity {
         answers4.add("Colombie");
         answers4.add("Suède");
 
-        Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 3, R.drawable.flag_n_ethiopia, R.raw.duolingo_correct, "medium");
-        Questions Q2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 2, R.drawable.flag_n_india, R.raw.duolingo_correct, "medium");
-        Questions Q3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 2, R.drawable.flag_n_portugal, R.raw.duolingo_correct, "medium");
-        Questions Q4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 3, R.drawable.flag_n_kenya, R.raw.duolingo_correct, "medium");
+        Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_n_ethiopia, R.raw.duolingo_correct, "medium");
+        Questions Q2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 1, R.drawable.flag_n_india, R.raw.duolingo_correct, "medium");
+        Questions Q3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 1, R.drawable.flag_n_portugal, R.raw.duolingo_correct, "medium");
+        Questions Q4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 1, R.drawable.flag_n_kenya, R.raw.duolingo_correct, "medium");
 
         questions.add(Q1);
         questions.add(Q2);
@@ -171,7 +171,7 @@ public class QuestionsListActivity extends AppCompatActivity {
         answers4.add("Suriname");
         answers4.add("Libye");
 
-        Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 3, R.drawable.flag_h_eritrea, R.raw.duolingo_correct, "hard");
+        Questions Q1 = new Questions("Quel est le pays de ce drapeau ?", answers1, 1, R.drawable.flag_h_eritrea, R.raw.duolingo_correct, "hard");
         Questions Q2 = new Questions("Quel est le pays de ce drapeau ?", answers2, 1, R.drawable.flag_h_malawi, R.raw.duolingo_correct, "hard");
         Questions Q3 = new Questions("Quel est le pays de ce drapeau ?", answers3, 1, R.drawable.flag_h_oman, R.raw.duolingo_correct, "hard");
         Questions Q4 = new Questions("Quel est le pays de ce drapeau ?", answers4, 1, R.drawable.flag_h_mozambique, R.raw.duolingo_correct, "hard");

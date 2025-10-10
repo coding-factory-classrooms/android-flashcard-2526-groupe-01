@@ -1,0 +1,135 @@
+{
+  "questions": [
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Brasil", "Chine", "France", "Allemagne"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_brazil",
+      "raw": "R.raw.flag_e_brazil",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Nigéria", "Italie", "Japon", "Russie"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_nigeria",
+      "raw": "R.raw.flag_e_nigeria",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Espagne", "Royaume-Unis", "Ukraine", "Etats-Unis"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_spain",
+      "raw": "R.raw.flag_e_spain",
+      "difficulty": "easy"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Italie", "Chine", "Ukraine", "Russie"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_italy",
+      "raw": "R.raw.flag_e_italy",
+      "difficulty": "easy"
+    },
+
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Ethiopie", "Colombie", "Egypte", "Finlande"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_n_ethiopia",
+      "raw": "R.raw.flag_n_ethiopia",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Inde", "Hongrie", "Kenya", "Lithuanie"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_n_india",
+      "raw": "R.raw.flag_n_india",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Portugal", "Philippines", "Suède", "Thailande"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_n_portugal",
+      "raw": "R.raw.flag_n_portugal",
+      "difficulty": "medium"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Kenya", "Portugal", "Colombie", "Suède"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_n_kenya",
+      "raw": "R.raw.flag_n_kenya",
+      "difficulty": "medium"
+    },
+
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Érythrée", "Bosnie-Herzégovine", "Cape Vert", "Libye"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_eritrea",
+      "raw": "R.raw.flag_h_eritrea",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Malawi", "Mongolie", "Mozambique", "Népal"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_malawi",
+      "raw": "R.raw.flag_h_malawi",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Oman", "Seychelles", "Suriname", "Ouzbékistan"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_oman",
+      "raw": "R.raw.flag_h_oman",
+      "difficulty": "hard"
+    },
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Mozambique", "Ouzbékistan", "Suriname", "Libye"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_h_mozambique",
+      "raw": "R.raw.flag_h_mozambique",
+      "difficulty": "hard"
+    },
+
+    {
+      "question": "Quel est le drapeau de cette état américain ?",
+      "answers": ["Hawaii", "Ohio", "Maine", "Washington"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_vh_hawaii",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    },
+    {
+      "question": "Quel est ce pays non reconnue par l'ONU ?",
+      "answers": ["Somaliland", "Abkhazie", "Kosovo", "République arabe sahraouie démocratique"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_vh_somaliland",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    },
+    {
+      "question": "Quel est ce pays aujourd'hui disparue ?",
+      "answers": ["Empire Allemand", "Empire Autrichien", "République des deux nations", "Empire Ottoman"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_vh_german_empire",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    },
+    {
+      "question": "Quel est le territoire français de ce drapeau ?",
+      "answers": ["Saint-Pierre-et-Miquelon", "Normandie", "Bretagne", "Pays basque français"],
+      "correctAnswerPosition": 1,
+      "flag": "R.vh_saint_pierre_and_miquelon",
+      "raw": "R.raw.duolingo_correct",
+      "difficulty": "hardcore"
+    }
+  ]
+}
