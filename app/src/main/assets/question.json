@@ -4,7 +4,7 @@
       "question": "Quel est le pays de ce drapeau ?",
       "answers": ["Brasil", "Chine", "France", "Allemagne"],
       "correctAnswerPosition": 1,
-        "flag": "R.drawable.flag_e_germany",
+        "flag": "R.drawable.flag_e_brazil",
       "raw": "R.raw.flag_e_brazil",
       "difficulty": "easy"
     },
@@ -32,7 +32,14 @@
       "raw": "R.raw.flag_e_italy",
       "difficulty": "easy"
     },
-
+    {
+      "question": "Quel est le pays de ce drapeau ?",
+      "answers": ["Japon", "Ukraine", "Corée du Sud", "Laos"],
+      "correctAnswerPosition": 1,
+      "flag": "R.drawable.flag_e_japan",
+      "raw": "R.raw.flag_e_japan",
+      "difficulty": "easy"
+    },
     {
       "question": "Quel est le pays de ce drapeau ?",
       "answers": ["Ethiopie", "Colombie", "Egypte", "Finlande"],
