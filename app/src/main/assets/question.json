@@ -4,7 +4,7 @@
       "question": "Quel est le pays de ce drapeau ?",
       "answers": ["Brasil", "Chine", "France", "Allemagne"],
       "correctAnswerPosition": 1,
-      "flag": "R.drawable.flag_e_japan",
+        "flag": "R.drawable.flag_e_germany",
       "raw": "R.raw.flag_e_brazil",
       "difficulty": "easy"
     },
