@@ -26,8 +26,9 @@ public class QuestionsListAdapter extends RecyclerView.Adapter<QuestionsListAdap
     }
 
     // Constructor of the Adapter
-    public QuestionsListAdapter(List<Questions> questions) {
+    public QuestionsListAdapter(List<Questions> questions, OnQuestionClickListener listener) {
         this.questions = questions;
+        this.listener = listener;
     }
 
     //

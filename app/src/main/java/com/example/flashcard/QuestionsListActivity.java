@@ -1,6 +1,8 @@
 package com.example.flashcard;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Activity that show the list of the questions
-public class QuestionsListActivity extends AppCompatActivity {
+public class QuestionsListActivity extends AppCompatActivity implements QuestionsListAdapter.OnQuestionClickListener {
 
     private RecyclerView recyclerView;
     private  QuestionsListAdapter adapter;
@@ -42,7 +44,7 @@ public class QuestionsListActivity extends AppCompatActivity {
         allQuestions = getAllQuestions();
 
         // Create and configure the Adapter
-        adapter = new QuestionsListAdapter(allQuestions);
+        adapter = new QuestionsListAdapter(allQuestions, this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -220,5 +222,14 @@ public class QuestionsListActivity extends AppCompatActivity {
         questions.add(Q3);
         questions.add(Q4);
         return questions;
+    }
+
+    @Override
+    public void onQuestionClick(Questions questions, int position) {
+        Intent intent = new Intent(this, QuestionsActivity.class);
+        ArrayList<Questions> list = new ArrayList<>();
+        list.add(questions);
+        intent.putParcelableArrayListExtra("questions", list);
+        startActivity(intent);
     }
 }

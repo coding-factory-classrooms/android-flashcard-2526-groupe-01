@@ -1,5 +1,6 @@
 package com.example.flashcard;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -64,12 +65,13 @@ public class QuestionsActivity extends AppCompatActivity {
         submitChoiceButtton.setVisibility(View.GONE);
 
         // Initialise SOUND
-        this.CorrectMediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.duolingo_correct);
-        this.WrongMediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_buzzer);
-        this.BresilPlayer = MediaPlayer.create(getApplicationContext(), R.raw.flag_e_brazil);
-        this.EspagnePlayer = MediaPlayer.create(getApplicationContext(), R.raw.flag_e_spain);
-        this.ItaliePlayer = MediaPlayer.create(getApplicationContext(), R.raw.italie);
-        this.Inde = MediaPlayer.create(getApplicationContext(), R.raw.inde);
+        Context context = getApplicationContext();
+        this.CorrectMediaPlayer = MediaPlayer.create(context,R.raw.duolingo_correct);
+        this.WrongMediaPlayer = MediaPlayer.create(context, R.raw.wrong_buzzer);
+        this.BresilPlayer = MediaPlayer.create(context, R.raw.flag_e_brazil);
+        this.EspagnePlayer = MediaPlayer.create(context, R.raw.flag_e_spain);
+        this.ItaliePlayer = MediaPlayer.create(context, R.raw.italie);
+        this.Inde = MediaPlayer.create(context, R.raw.inde);
 
 
         // Source for take Questions
@@ -104,12 +106,12 @@ public class QuestionsActivity extends AppCompatActivity {
         // set img for the button image
         difficultyImageView.setImageResource(d_logo);
         // set text for de question on quiz
-        questionNumberTextView.setText("Question " + (questionIndex +1) + "/4");
+        questionNumberTextView.setText("Question " + (questionIndex +1) + "/ " + questionList.size());
         // GET difficultyImage Button
         ImageButton difficultyImageButton = findViewById(R.id.difficultyImageButton);
         difficultyImageButton.setImageResource(d_logo);
         // initialise Media Player for play sound on click
-        this.blopyBlopaEasterEggs = MediaPlayer.create(getApplicationContext(),d_raw);
+        this.blopyBlopaEasterEggs = MediaPlayer.create(context,d_raw);
         difficultyImageButton.setOnClickListener(view -> blopyBlopaEasterEggs.start());
 
         // Get CorrectAnswer width the position
