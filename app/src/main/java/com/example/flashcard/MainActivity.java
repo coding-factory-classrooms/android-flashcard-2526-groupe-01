@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (id == R.id.statButton) {
 
             // go to statActivity - Here is the logic for the transition to the stat page
-            Intent intent = new Intent(this, StatsActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, StatsActivity.class);
+//            startActivity(intent);
 
         } else if (id == R.id.aboutButton) {
 
