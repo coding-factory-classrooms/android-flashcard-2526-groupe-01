@@ -168,7 +168,7 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
 
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
-            radioGroup.setVisibility(View.VISIBLE);
+            radioGroup.setVisibility(View.GONE);
             if (response == responseUser) {
                 feedbackTextView.setText("Bravo ! Bonne réponse !");
                 if (numberClickButton <= 1) {
@@ -189,6 +189,8 @@ public class QuestionsTrainingActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, QuestionsTrainingActivity.class);
                     intent.putParcelableArrayListExtra("wrongAnswersList", wrongAnswersList);
                     intent.putExtra("questionindex", questionIndex + 1);
+                    intent.putExtra("d_logo", d_logo);
+                    intent.putExtra("d_raw", d_raw);
                     startActivity(intent);
                     finish();
                 } else {

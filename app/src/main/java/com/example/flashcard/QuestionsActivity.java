@@ -173,7 +173,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
             // si le choix de l'utilisateur et de la bonne reponse sont le meme
             // l'utilisateur a trouver passer a la 2eme question
-            radioGroup.setVisibility(View.VISIBLE);
+            radioGroup.setVisibility(View.GONE);
             if (response == responseUser) {
                 feedbackTextView.setText("Bravo ! Bonne réponse !");
                 if (numberClickButton <= 1) {
@@ -206,6 +206,8 @@ public class QuestionsActivity extends AppCompatActivity {
                     intent.putExtra("questionindex", questionIndex + 1);
                     intent.putExtra("scoretext", scoreText);
                     intent.putExtra("selecteddif", selectedDif);
+                    intent.putExtra("d_logo", d_logo);
+                    intent.putExtra("d_raw", d_raw);
                     startActivity(intent);
                     finish();
                 } else {
