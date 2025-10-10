@@ -1,8 +1,10 @@
 package com.example.flashcard;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -10,11 +12,29 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.login.LoginException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttp;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 // Activity that show the list of the questions
 public class QuestionsListActivity extends AppCompatActivity {
+
+    private static final String TAG = "QuestionsListActivity";
+
+    private static final String JSON_URL = "https://raw.githubusercontent.com/coding-factory-classrooms/android-flashcard-2526-groupe-01/dev/app/src/main/assets/question.json";
 
     private RecyclerView recyclerView;
     private  QuestionsListAdapter adapter;
@@ -44,10 +64,159 @@ public class QuestionsListActivity extends AppCompatActivity {
         // Create and configure the Adapter
         adapter = new QuestionsListAdapter(allQuestions);
         recyclerView.setAdapter(adapter);
+
+        loadQuestionsFromApi();
+
     }
+
+    private void loadQuestionsFromApi(){
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(JSON_URL)
+                .build();
+
+        Log.i(TAG, "Envoie de la requete HTTP" + JSON_URL);
+
+        client.newCall(request).enqueue(new Callback() {
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.e(TAG, "onFailure: ", e);
+
+                runOnUiThread(()->{
+                    Log.w(TAG, "Using offline questions");
+                });
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (!response.isSuccessful()){
+                    Log.e(TAG, "Response not successful: " + response.code());
+                    return;
+                }
+
+                String jsonString = response.body().string();
+                Log.i(TAG, "Received JSON response, length : " + jsonString.length());
+
+                List<Questions> loadedQuestions = parseQuestionsFromJson(jsonString);
+
+                runOnUiThread(() -> {
+                    if (loadedQuestions != null && !loadedQuestions.isEmpty()){
+                        allQuestions.clear();
+                        allQuestions.addAll(loadedQuestions);
+                        adapter.notifyDataSetChanged();
+                        Log.i(TAG, "Successfully loaded " + loadedQuestions.size() + "questions from API");
+                    } else {
+                        Log.w(TAG, "Failed to parse questions, keeping fallback questions ");
+                    }
+                });
+            }
+        });
+    }
+
+    private List<Questions> parseQuestionsFromJson(String jsonString) {
+        List<Questions> questionsList = new ArrayList<>();
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+
+            JSONArray questionsArray = jsonObject.getJSONArray("questions");
+
+            for (int i = 0; i < questionsArray.length(); i++) {
+                JSONObject quesionObj = questionsArray.getJSONObject(i);
+
+                String question = quesionObj.getString("question");
+                int correctAnswerPosition = quesionObj.getInt("correctAnswerPosition");
+                String difficulty = quesionObj.getString("difficulty");
+
+                JSONArray answersArray = quesionObj.getJSONArray("answers");
+                List<String> answers = new ArrayList<>();
+                for (int j = 0; j < answersArray.length(); j++) {
+                    answers.add(answersArray.getString(j));
+                }
+
+                String flagString = quesionObj.getString("flag");
+                String rawString = quesionObj.getString("raw");
+
+                int flagId = getResourceIdFromString(flagString);
+                int rawId = getResourceIdFromString(rawString);
+
+                Questions q = new Questions(
+                        question,
+                        answers,
+                        correctAnswerPosition,
+                        flagId,
+                        rawId,
+                        difficulty
+                );
+                questionsList.add(q);
+            }
+            Log.i(TAG, "Successfully parsed " + questionsList.size() + "questions");
+        } catch (JSONException e) {
+            Log.e(TAG, "Error parsing JSON", e);
+            return null;
+        }
+        return questionsList;
+    }
+
+    private int getResourceIdFromString(String resourceString){
+        String resourceName = resourceString
+                .replace("R.drawable.", "")
+                .replace("R.raw.","");
+
+        String resourceType = resourceString.contains("drawable") ? "drawable" : "raw";
+
+        int resourceId = getResources().getIdentifier(
+                resourceName,
+                resourceType,
+                getPackageName()
+        );
+
+        if (resourceId == 0) {
+            Log.w(TAG, "Resource not found : " + resourceString);
+        }
+
+        return  resourceId;
+    }
+
+    /*private void loadQuestionsFromApi() {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://raw.githubusercontent.com/coding-factory-classrooms/android-flashcard-2526-groupe-01/dev/app/src/main/assets/question.json")
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+
+            public static final String TAG = "QuestionsListActivity";
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                Log.e(TAG, "onFailure: ", e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String body = response.body().string();
+                Log.i(TAG, "onResponse: body=" + body);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(body);
+                    JSONObject questionJsonObject = JSONObject.getJSONObject;
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                    Log.e(TAG, "onResponse: ", e);
+                }
+            }
+        });
+        Log.i("QuestionListActivity", "Started HTTP Request");
+    }*/
 
     // Get the complete list of all questions and difficulties
     private  List<Questions> getAllQuestions(){
+        Log.i(TAG, "Loading fallback questions");
+
         List<Questions> questions = new ArrayList<>();
 
         // Add easy questions
