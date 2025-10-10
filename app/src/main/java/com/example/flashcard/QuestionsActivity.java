@@ -198,8 +198,10 @@ public class QuestionsActivity extends AppCompatActivity {
                     // Encore des questions -> aller à la suivante
                     Intent intent = new Intent(this, QuestionsActivity.class);
                     intent.putParcelableArrayListExtra("questions", questionList);
+                    intent.putParcelableArrayListExtra("wrongAnswersList", wrongAnswersList);
                     intent.putExtra("questionindex", questionIndex + 1);
                     intent.putExtra("scoretext", scoreText);
+                    intent.putExtra("selecteddif", selectedDif);
                     startActivity(intent);
                     finish();
                 } else {

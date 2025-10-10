@@ -47,7 +47,7 @@ public class StatsActivity extends AppCompatActivity {
         Intent srcIntent = getIntent();
 
         int scoreText = getIntent().getIntExtra("scoretext", 0);
-        int selectedDif = getIntent().getIntExtra("selecteddif", -1);
+        int selectedDif = getIntent().getIntExtra("selecteddif", 0);
         ArrayList<Questions> wrongAnswersList = getIntent().getParcelableArrayListExtra("wrongAnswersList");
 
         // Calculate and set % progress bar
